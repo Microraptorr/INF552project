@@ -13,6 +13,7 @@ const ctx = {
     yearAxisHeight: 20,
     linePlot: false,
     crossSeriesTempExtent: [0, 0],
+    // test
 };
 
 // The column names of CITY_NAMES to be exctracted from the dataset
