@@ -84,8 +84,45 @@ function createViz() {
 };
 
 function loadData() {
-    // data source: https://www.kaggle.com/datasets/garrickhague/temp-data-of-prominent-us-CITY_NAMES-from-1948-to-2022
-    d3.csv("data/US_City_Temp_Data.csv").then(function (data) {
-        // a mettre 
+    Promise.all([
+        d3.json("TDF_data/gra.geojson"),
+        d3.json("TDF_data/nutsrg.geojson")
+    ]).then(function (data) {
+        generateMap(data);
     }).catch(function (error) { console.log(error) });
 };
+
+function generateMap(data){
+    // label data
+    const graticule = data[0];
+    const nutsrg = data[1];
+
+    // create a projection
+    ctx.proj = d3.geoIdentity()
+                .reflectY(true)
+                .fitSize([ctx.carte_w, ctx.carte_h], graticule); 
+
+    // create a path generator
+    let geoPathGen = d3.geoPath().projection(ctx.proj);
+
+    //  lat (40,58), long (-11, 15)
+    // bout de l'Irlande : 2888109.454312 3445957.724224
+    // bout du Dannemark : 4348305.438071 3859116.683410
+    // Berlin : 4653124.064551 3344562.533679
+    //  bout de la Corse : 4250063.419722 1972461.133042
+
+    // global : long (2888109.454312, 4653124.064551), lat(1972461.133042, 3859116.683410)
+
+    const coordFiltered = nutsrg.features.filter(d => d.geometry.coordinates); // à compléter...
+
+    // draw the regions
+    let regionGroup = d3.select("#carteG")
+                        .append("g");
+    regionGroup.selectAll("path")
+                .data(nutsrg.features)
+                .enter()
+                .append("path")
+                .attr("d", geoPathGen)
+                .attr("stroke", "#DDD")
+                .attr("class", "nutsArea");
+}
