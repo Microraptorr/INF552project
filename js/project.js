@@ -22,8 +22,6 @@ const ctx = {
     // test
 };
 
-// The column names of CITY_NAMES to be exctracted from the dataset
-const CITY_NAMES = ["boston", "new_york", "los_angeles", "anchorage", "dallas", "miami", "honolulu", "las_vegas", "phoenix", "new_orleans", "san_francisco", "seattle", "sacramento", "reno", "portland", "oklahoma_city", "memphis", "minneapolis", "kansas_city", "detroit", "denver", "albuquerque", "atlanta"];
 
 function transformData(data) {
     let temperatureSeries = { dates: [], series: [] };
@@ -92,6 +90,64 @@ function loadData() {
     }).catch(function (error) { console.log(error) });
 };
 
+// Function to check if a feature is within the user-defined bounds
+function isWithinBounds(feature,limits) {
+    const featureBounds = calculateBoundingBox(feature.geometry);
+    const [minX, minY] = featureBounds[0];
+    const [maxX, maxY] = featureBounds[1];
+    console.log(feature.properties.na,minY,maxY,minX,maxX)
+    
+    return (
+      minX <= limits[1][1] && maxX >= limits[1][0] &&
+      minY <= limits[0][1] && maxY >= limits[0][0]
+    );
+};
+
+// Function to calculate the bounding box as d3.geoBounds() need to be used with clockwise coordinates, which isn't the case
+function calculateBoundingBox(geometry) {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+
+    // Function to update the bounding box based on coordinates
+    function updateBounds(coords) {
+        coords.forEach(function(coord) {
+            let x = coord[0];
+            let y = coord[1];
+
+            minX = Math.min(minX, x);
+            maxX = Math.max(maxX, x);
+            minY = Math.min(minY, y);
+            maxY = Math.max(maxY, y);
+        });
+    }
+
+    // Check geometry type and process coordinates accordingly
+    if (geometry.type === "Polygon") {
+        geometry.coordinates.forEach(function(ring) {
+            updateBounds(ring);
+        });
+    } else if (geometry.type === "MultiPolygon") {
+        geometry.coordinates.forEach(function(polygon) {
+            polygon.forEach(function(ring) {
+                updateBounds(ring);
+            });
+        });
+    }
+
+    return [[minX, minY], [maxX, maxY]]; // Bounding box in [SW, NE] format
+}
+
+// Apply the bounding box calculation to each feature
+data.features.forEach(function(feature) {
+    const bbox = calculateBoundingBox(feature.geometry);
+    feature.bbox = bbox;  // Add the bounding box to the feature properties
+});
+
+
+
+
+
+
+
 function generateMap(data){
     // label data
     const graticule = data[0];
@@ -110,10 +166,14 @@ function generateMap(data){
     // bout du Dannemark : 4348305.438071 3859116.683410
     // Berlin : 4653124.064551 3344562.533679
     //  bout de la Corse : 4250063.419722 1972461.133042
+    lat_range=[1972461.133042, 3859116.683410]
+    long_range=[2888109.454312, 4653124.064551]
+    limits = [lat_range,long_range]//
 
-    // global : long (2888109.454312, 4653124.064551), lat(1972461.133042, 3859116.683410)
+    const coordFiltered = nutsrg.features.filter(d => isWithinBounds(d,limits));
 
-    const coordFiltered = nutsrg.features.filter(d => d.geometry.coordinates); // à compléter...
+    console.log(coordFiltered);
+
 
     // draw the regions
     let regionGroup = d3.select("#carteG")
