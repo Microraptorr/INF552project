@@ -1,5 +1,4 @@
 const ctx = {
-    REFERENCE_YEAR: "2010", // year used as a reference, between 1948 and 2021
     w: 1200,
     h: 1400,
     carte_w: 600,
@@ -8,16 +7,6 @@ const ctx = {
     timeline_h: 700,
     details_w: 600,
     details_h: 700,
-    GREY_NULL: "#333",
-    STAGE_DURATION: 1000,
-    DOUBLE_CLICK_THRESHOLD: 320,
-    totalStripPlotHeight: 420,
-    totalLinePlotHeight: 900,
-    vmargin: 2,
-    hmargin: 4,
-    timeParser: d3.timeParse("%Y-%m-%d"),
-    yearAxisHeight: 20,
-    linePlot: false,
 };
 
 
