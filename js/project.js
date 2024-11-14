@@ -18,8 +18,6 @@ const ctx = {
     timeParser: d3.timeParse("%Y-%m-%d"),
     yearAxisHeight: 20,
     linePlot: false,
-    crossSeriesTempExtent: [0, 0],
-    // test
 };
 
 
@@ -66,17 +64,12 @@ function createViz() {
     let svgEl = d3.select("#main").append("svg");
     svgEl.attr("width", ctx.w);
     svgEl.attr("height", ctx.h);
-    var mainG = svgEl.append("g").attr("id", "mainG");
-    mainG.append("g").attr("id", "carteG")
-                    .attr("width", ctx.carte_w)
-                    .attr("height", ctx.carte_h);
-    mainG.append("g").attr("id", "timelineG")
-                    .attr("width", ctx.timeline_w)
-                    .attr("height", ctx.timeline_h)
+    svgEl.append("svg").attr("id", "carteG")
+                        .attr("width",ctx.carte_w)
+                        .attr("height",ctx.carte_h);
+    svgEl.append("g").attr("id", "timelineG")
                     .attr("transform", `translate(${ctx.carte_w}, 0)`);
-    mainG.append("g").attr("id", "detailsG")
-                    .attr("width", ctx.details_w)
-                    .attr("height", ctx.details_h)
+    svgEl.append("g").attr("id", "detailsG")
                     .attr("transform", `translate(${ctx.carte_w}, ${ctx.timeline_h})`);
     loadData();
 };
@@ -93,9 +86,10 @@ function loadData() {
 // Function to check if a feature is within the user-defined bounds
 function isWithinBounds(feature,limits) {
     const featureBounds = calculateBoundingBox(feature.geometry);
+    feature.bbox = featureBounds;  // Add the bounding box to the feature properties
     const [minX, minY] = featureBounds[0];
     const [maxX, maxY] = featureBounds[1];
-    console.log(feature.properties.na,minY,maxY,minX,maxX)
+    // console.log(feature.properties.na,minY,maxY,minX,maxX)
     
     return (
       minX <= limits[1][1] && maxX >= limits[1][0] &&
@@ -136,11 +130,8 @@ function calculateBoundingBox(geometry) {
     return [[minX, minY], [maxX, maxY]]; // Bounding box in [SW, NE] format
 }
 
-// Apply the bounding box calculation to each feature
-data.features.forEach(function(feature) {
-    const bbox = calculateBoundingBox(feature.geometry);
-    feature.bbox = bbox;  // Add the bounding box to the feature properties
-});
+
+    
 
 
 
@@ -156,7 +147,7 @@ function generateMap(data){
     // create a projection
     ctx.proj = d3.geoIdentity()
                 .reflectY(true)
-                .fitSize([ctx.carte_w, ctx.carte_h], graticule); 
+                .fitExtent([[-350,-1000],[ctx.carte_w*2.8, ctx.carte_h*2.1]], graticule);
 
     // create a path generator
     let geoPathGen = d3.geoPath().projection(ctx.proj);
