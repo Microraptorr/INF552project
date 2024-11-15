@@ -4,7 +4,7 @@ const ctx = {
     carte_w: 600,
     carte_h: 800,
     timeline_w: 600,
-    timeline_h: 700,
+    timeline_h: 300,
     details_w: 600,
     details_h: 700,
 };
@@ -50,15 +50,11 @@ function transformData(data) {
 
 function createViz() {
     console.log("Using D3 v" + d3.version);
-    let svgEl = d3.select("#main").append("svg");
-    svgEl.attr("width", ctx.w);
-    svgEl.attr("height", ctx.h);
-    svgEl.append("svg").attr("id", "carteG")
-                        .attr("width",ctx.carte_w)
-                        .attr("height",ctx.carte_h);
-    svgEl.append("g").attr("id", "timelineG")
+    let mainG = d3.select("#main");
+    mainG.append("div").attr("id", "map");
+    mainG.append("g").attr("id", "timelineG")
                     .attr("transform", `translate(${ctx.carte_w}, 0)`);
-    svgEl.append("g").attr("id", "detailsG")
+    mainG.append("svg").attr("id", "detailsG")
                     .attr("transform", `translate(${ctx.carte_w}, ${ctx.timeline_h})`);
     loadData();
 };
@@ -66,7 +62,8 @@ function createViz() {
 function loadData() {
     Promise.all([
         d3.json("TDF_data/gra.geojson"),
-        d3.json("TDF_data/nutsrg.geojson")
+        d3.json("TDF_data/nutsrg.geojson"),
+        d3.json("TDF_data/cntrg.geojson")
     ]).then(function (data) {
         generateMap(data);
     }).catch(function (error) { console.log(error) });
@@ -119,19 +116,11 @@ function calculateBoundingBox(geometry) {
     return [[minX, minY], [maxX, maxY]]; // Bounding box in [SW, NE] format
 }
 
-
-    
-
-
-
-
-
-
-
 function generateMap(data){
     // label data
     const graticule = data[0];
     const nutsrg = data[1];
+    const cntdata = data[2];
 
     // create a projection
     ctx.proj = d3.geoIdentity()
@@ -148,11 +137,12 @@ function generateMap(data){
     //  bout de la Corse : 4250063.419722 1972461.133042
     lat_range=[1972461.133042, 3859116.683410]
     long_range=[2888109.454312, 4653124.064551]
-    limits = [lat_range,long_range]//
+    limits = [lat_range,long_range]
 
-    const coordFiltered = nutsrg.features.filter(d => isWithinBounds(d,limits));
+    const coordFiltered = nutsrg.features.filter((d)=>(d.properties.id.slice(0,2)=="FR"))
 
     console.log(coordFiltered);
+    console.log(cntdata.features);
 
 
     // draw the regions
@@ -165,4 +155,15 @@ function generateMap(data){
                 .attr("d", geoPathGen)
                 .attr("stroke", "#DDD")
                 .attr("class", "nutsArea");
+    
+    let countries = d3.select("#carteG")
+                    .append("g");
+
+    countries.selectAll("path")
+            .data(coordFiltered)
+            .enter()
+            .append("path")
+            .attr("d",geoPathGen)
+            .attr("stroke","#DDD")
+            .attr("class","countriesArea");
 }
