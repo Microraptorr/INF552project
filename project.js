@@ -52,7 +52,7 @@ function createViz() {
     console.log("Using D3 v" + d3.version);
     let mainG = d3.select("#main");
     mainG.append("div").attr("id", "map");
-    mainG.append("div").attr("id", "timelineG")
+    mainG.append("g").attr("id", "timelineG")
                     .attr("transform", `translate(${ctx.carte_w}, 0)`);
     mainG.append("svg").attr("id", "detailsG")
                     .attr("transform", `translate(${ctx.carte_w}, ${ctx.timeline_h})`);
@@ -117,13 +117,6 @@ function calculateBoundingBox(geometry) {
 }
 
 function generateMap(data){
-    var map = L.map('map').setView([47.0874657, 2.6485882], 6);
-    L.tileLayer('https://tile.opentopomap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map)
-    var marker = L.marker([51.5, -0.09]).addTo(map);//juste pour savoir ajouter un marqueur
-
     // label data
     const graticule = data[0];
     const nutsrg = data[1];
