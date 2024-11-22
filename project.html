@@ -13,29 +13,120 @@
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
-        <style>
-svg {
-    display: block;
-    font-family: sans-serif;
-    font-size: 10px;
-}
-        </style>
-        <style type="text/css">
-            .nutsArea {
-                fill: darkgray;
-            }
-            .countriesArea{
-                fill:darkgray;
-            }
-            .nutsArea:hover{
-                fill:lightgray;
-            }
-            #map { 
-                height: 700px;
-                width : 800px;
-            }
 
+        <style>
+        svg {
+            display: block;
+            font-family: sans-serif;
+            font-size: 10px;
+        }
         </style>
+
+        <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        #map {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            height: 700px;
+            width: 800px;
+            z-index: 5;
+        }
+
+        .multi-range {
+            position: absolute;
+            top: 50px; 
+            left: 850px; 
+            z-index: 10;
+            height: 50px; 
+            width: 400px; 
+        }
+
+
+        #lower-val, #upper-val {
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        #lower-val {
+            top: -30px; /* Place la valeur au-dessus du curseur gauche */
+        }
+
+        #upper-val {
+            top: 30px; /* Place la valeur en dessous du curseur droit */
+        }
+
+        input[type="range"] {
+            position: absolute;
+            width: 100%;
+            height: 6px;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+            opacity: 0.7;
+            pointer-events: auto;
+            z-index: 10;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            position: relative;
+            pointer-events: auto;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            position: relative;
+            pointer-events: auto;
+        }
+
+        /* input[type="range"]::-ms-thumb {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider-value {
+            position: absolute;
+            font-size: 0.9em;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2px 5px;
+            border-radius: 5px;
+        } */
+        </style>
+    
     </head>
 
     <body onload="createViz();">
@@ -47,18 +138,14 @@ svg {
             </div> -->
         </div>
 
-        <div class="double_range_slider_box">
-            <div class="double_range_slider">
-              <span class="range_track" id="range_track"></span>
-       
-              <input type="range" class="min" min="0" max="100" value="0" step="0" />
-              <input type="range" class="max" min="0" max="100" value="20" step="0" />
-       
-              <div class="minvalue"></div>
-              <div class="maxvalue"></div>
+        <div class="multi-range">
+            <div class="range-container">
+                <span id="lower-val">1920</span>
+                <span id="upper-val">2010</span>
+                <input type="range" min="1903" max="2024" value="1920" id="lower">
+                <input type="range" min="1903" max="2024" value="2010" id="upper">
             </div>
-          </div>
-          
-    </body>
+        </div>
+            </body>
 
 </html>
