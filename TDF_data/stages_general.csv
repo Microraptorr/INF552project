@@ -489,7 +489,7 @@ P,1994-07-02,7.2,Lille,Lille,Individual time trial,Chris Boardman,GBR
 1,1994-07-03,234,Lille,Armentières,Plain stage,Djamolidine Abdoujaparov,UZB
 2,1994-07-04,203.5,Roubaix,Boulogne-sur-Mer,Plain stage,Jean-Paul van Poppel,NED
 3,1994-07-05,66.5,Calais,Eurotunnel,Team time trial,GB–MG Maglificio,
-4,1994-07-06,204.5,Dover, Brighton,Plain stage,Francisco Cabello,ESP
+4,1994-07-06,204.5,Dover,Brighton,Plain stage,Francisco Cabello,ESP
 5,1994-07-07,187,Portsmouth,Portsmouth,Plain stage,Nicola Minali,ITA
 6,1994-07-08,270.5,Cherbourg,Rennes,Plain stage,Gianluca Bortolami,ITA
 7,1994-07-09,259.5,Rennes,Futuroscope,Plain stage,Ján Svorada,SVK
@@ -1387,7 +1387,7 @@ P,1969-06-28,10,Roubaix,Roubaix,Individual time trial,Rudi Altig,GER
 24,1958-07-19,320,Dijon,Paris,Plain stage,Pierino Baffi,ITA
 1,1957-06-27,204,Nantes,Granville,Plain stage,André Darrigade,FRA
 2,1957-06-28,226,Granville,Caen,Plain stage,René Privat,FRA
-3a,1957-06-29,15,"Circuit de la Prairie, Caen","Circuit de la Prairie, Caen",Team time trial,France,
+3a,1957-06-29,15,Circuit de la Prairie Caen,Circuit de la Prairie Caen,Team time trial,France,
 3b,1957-06-29,134,Caen,Rouen,Plain stage,Jacques Anquetil,FRA
 4,1957-06-30,232,Rouen,Roubaix,Plain stage,Marcel Janssens,BEL
 5,1957-07-01,170,Roubaix,Charleroi,Plain stage,Gilbert Bauvin,FRA
@@ -1753,7 +1753,7 @@ P,1969-06-28,10,Roubaix,Roubaix,Individual time trial,Rudi Altig,GER
 2,1935-07-05,192,Lille,Charleville,Plain stage,Charles Pélissier,FRA
 3,1935-07-06,161,Charleville,Metz,Plain stage,Rafaele di Paco,ITA
 4,1935-07-07,220,Metz,Belfort,Stage with mountain(s),Jean Aerts,BEL
-5a,1935-07-08,262,Belfort,"Geneva, Switzerland",Plain stage,Maurice Archambaud,FRA
+5a,1935-07-08,262,Belfort,Geneva,Plain stage,Maurice Archambaud,FRA
 5b,1935-07-08,58,Geneva,Evian,Individual time trial,Rafaele di Paco,ITA
 6,1935-07-10,207,Evian,Aix-les-Bains,Stage with mountain(s),René Vietto,FRA
 7,1935-07-11,229,Aix-les-Bains,Grenoble,Stage with mountain(s),Francesco Camusso,ITA

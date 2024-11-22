@@ -61,9 +61,8 @@ function createViz() {
 
 function loadData() {
     Promise.all([
-        d3.json("TDF_data/gra.geojson"),
-        d3.json("TDF_data/nutsrg.geojson"),
-        d3.json("TDF_data/cntrg.geojson")
+        d3.csv("TDF_data/stages_general.csv"),
+        d3.csv("TDF_data/cities_with_coordinates.csv")
     ]).then(function (data) {
         generateMap(data);
     }).catch(function (error) { console.log(error) });
@@ -116,6 +115,12 @@ function calculateBoundingBox(geometry) {
     return [[minX, minY], [maxX, maxY]]; // Bounding box in [SW, NE] format
 }
 
+function circleClick(e){
+    let clickedCircle=e.target
+    console.log(clickedCircle)
+    clickedCircle.bindPopup(clickedCircle.options.city).openPopup();
+}
+
 function generateMap(data){
     var map = L.map('map').setView([47.0874657, 2.6485882], 6);
     L.tileLayer('https://tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -125,52 +130,22 @@ function generateMap(data){
     var marker = L.marker([51.5, -0.09]).addTo(map);//juste pour savoir ajouter un marqueur
 
     // label data
-    const graticule = data[0];
-    const nutsrg = data[1];
-    const cntdata = data[2];
+    const stages_general = data[0];
+    city_coordinates=data[1];
 
-    // create a projection
-    ctx.proj = d3.geoIdentity()
-                .reflectY(true)
-                .fitExtent([[-350,-1000],[ctx.carte_w*2.8, ctx.carte_h*2.1]], graticule);
+    //add circles for cities' number of occurrences in the race
+    city_coordinates.forEach((d)=>{
+        let occurrences = stages_general.filter((stage)=>(stage.Origin==d.City)||stage.Destination==d.City).length;
+        
+        var circle = L.circleMarker([d.lat,d.lon],{
+            city: d.City,
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 3*(Math.log(occurrences)+1)
+        }).addTo(map).on('click',circleClick);
+    })
 
-    // create a path generator
-    let geoPathGen = d3.geoPath().projection(ctx.proj);
+    console.log(city_coordinates);
 
-    //  lat (40,58), long (-11, 15)
-    // bout de l'Irlande : 2888109.454312 3445957.724224
-    // bout du Dannemark : 4348305.438071 3859116.683410
-    // Berlin : 4653124.064551 3344562.533679
-    //  bout de la Corse : 4250063.419722 1972461.133042
-    lat_range=[1972461.133042, 3859116.683410]
-    long_range=[2888109.454312, 4653124.064551]
-    limits = [lat_range,long_range]
-
-    const coordFiltered = nutsrg.features.filter((d)=>(d.properties.id.slice(0,2)=="FR"))
-
-    console.log(coordFiltered);
-    console.log(cntdata.features);
-
-
-    // draw the regions
-    let regionGroup = d3.select("#carteG")
-                        .append("g");
-    regionGroup.selectAll("path")
-                .data(nutsrg.features)
-                .enter()
-                .append("path")
-                .attr("d", geoPathGen)
-                .attr("stroke", "#DDD")
-                .attr("class", "nutsArea");
-    
-    let countries = d3.select("#carteG")
-                    .append("g");
-
-    countries.selectAll("path")
-            .data(coordFiltered)
-            .enter()
-            .append("path")
-            .attr("d",geoPathGen)
-            .attr("stroke","#DDD")
-            .attr("class","countriesArea");
 }

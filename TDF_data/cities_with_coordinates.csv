@@ -1,0 +1,757 @@
+City,lat,lon
+Düsseldorf,51.233,6.783
+Verviers,50.583,5.85
+Mondorf-les-Bains,49.5069,6.2806
+Vittel,48.2025,5.9503
+Vesoul,47.6231,6.1558
+Troyes,48.2997,4.0792
+Nantua,46.1519,5.6078
+Périgueux,45.1929,0.7217
+Eymet,44.6686,0.3989
+Blagnac,43.6364,1.3906
+Laissac-Sévérac-l'Église,44.381,2.822
+Le Puy-en-Velay,45.04444,3.88472
+La Mure,44.9039,5.7881
+Briançon,44.8964,6.6356
+Marseille,43.2964,5.37
+Montgeron,48.7039,2.4605
+Mont Saint-Michel,48.636,-1.511
+Saint-Lô,49.12,-1.09
+Saumur,47.26,-0.0769
+Limoges,45.8353,1.2625
+Arpajon-sur-Cère,44.9047,2.4575
+Escaldes-Engordany,42.50889,1.54083
+Carcassonne,43.21,2.35
+Montpellier,43.6119,3.8772
+Bourg-Saint-Andéol,44.4482,4.5989
+Montélimar,44.5581,4.7508
+Bourg-en-Bresse,46.2056,5.2289
+Moirans-en-Montagne,46.4325,5.7261
+Bern,46.94806,7.4475
+Sallanches,45.9372,6.6328
+Albertville,45.6767,6.3933
+Megève,45.8578,6.6181
+Utrecht,52.09083,5.12167
+Antwerp,51.21778,4.40028
+Seraing,50.583,5.5
+Arras,50.292,2.78
+Abbeville,50.1058,1.8358
+Livarot,49.0075,0.1533
+Rennes,48.1147,-1.6794
+Vannes,47.6559,-2.7603
+Tarbes,43.23,0.07
+Lannemezan,43.12,0.39
+Muret,43.4611,1.3267
+Rodez,44.3506,2.575
+Bourg-de-Péage,45.0386,5.0508
+Digne-les-Bains,44.0933,6.2364
+Saint-Jean-de-Maurienne,45.2729,6.3484
+Modane,45.2022,6.6736
+Sèvres,48.8239,2.2117
+Leeds,53.7975,-1.54361
+York,53.96,-1.08
+Cambridge,52.205,0.1225
+Le Touquet-Paris-Plage,50.5186,1.595
+Ypres,50.85083,2.885
+Épernay,49.0403,3.96
+Tomblaine,48.6833,6.2167
+Gérardmer,48.08,6.88
+Mulhouse,47.75,7.34
+Besançon,47.24,6.02
+Saint-Étienne,45.4347,4.3903
+Grenoble,45.171546,5.722387
+Tallard,44.4625,6.0553
+Porto-Vecchio,41.5917,9.2803
+Bastia,42.7008,9.4503
+Ajaccio,41.9267,8.7369
+Nice,43.7034,7.2663
+Cagnes-sur-Mer,43.6644,7.1489
+Aix-en-Provence,43.526304,5.445429
+Castres,43.6,2.25
+Saint-Gildas-des-Bois,47.5172,-2.0372
+Avranches,48.685,-1.3556
+Fougères,48.3525,-1.1986
+Tours,47.393611,0.689167
+Saint-Pourçain-sur-Sioule,46.3083,3.29
+Givors,45.5914,4.7694
+Vaison-la-Romaine,44.2422,5.0724
+Le Bourg-d'Oisans,45.0558,6.0303
+Annecy,45.916,6.133
+Versailles,48.80472,2.12028
+Liège,50.63972,5.57056
+Visé,50.733,5.7
+Orchies,50.4756,3.245
+Rouen,49.44278,1.08861
+Belfort,47.64,6.85
+Arc-et-Senans,47.0331,5.7792
+Mâcon,46.3063,4.8313
+Saint-Paul-Trois-Châteaux,44.3497,4.769
+Limoux,43.0578,2.2192
+Samatan,43.4936,0.9317
+Bagnères-de-Luchon,42.7917,0.5947
+Rambouillet,48.6444,1.8308
+Passage du Gois,46.93083,-2.12611
+Olonne-sur-Mer,46.5369,-1.7717
+Lorient,47.75,-3.36
+Carhaix,48.2783,-3.5672
+Dinan,48.4564,-2.0489
+Le Mans,48.0077,0.1984
+Aigurande,46.4347,1.8297
+Issoire,45.545,3.2497
+Aurillac,44.9261,2.4406
+Blaye-les-Mines,44.0317,2.1325
+Cugnaux,43.5386,1.3444
+Pinerolo,44.883,7.333
+Créteil,48.7911,2.4628
+Rotterdam,51.92,4.48
+Brussels,50.84667,4.3525
+Wanze,50.533,5.217
+Cambrai,50.1767,3.2356
+Montargis,47.9978,2.7333
+Tournus,46.5639,4.9092
+Station des Rousses,46.4864,6.0625
+Morzine-Avoriaz,46.19083,6.775
+Chambéry,45.57,5.9118
+Sisteron,44.1911,5.9472
+Pamiers,43.1175,1.6117
+Salies-de-Béarn,43.471,-0.925
+Bordeaux,44.84,-0.58
+Longjumeau,48.6943,2.2958
+Monaco,43.73111,7.42
+Cap d'Agde,43.28417,3.50056
+Girona,41.98444,2.82111
+Barcelona,41.38278,2.17694
+Andorra la Vella,42.5,1.5
+Colmar,48.0817,7.3556
+Pontarlier,46.9067,6.3556
+Martigny,46.1,7.067
+Bourg-Saint-Maurice,45.6175,6.7694
+Bourgoin-Jallieu,45.5861,5.2736
+Montereau-Fault-Yonne,48.3853,2.9508
+Auray,47.6686,-2.9814
+Saint-Malo,48.64944,-2.02611
+Cholet,47.06,-0.8783
+Brioude,45.295,3.385
+Figeac,44.6086,2.0317
+Toulouse,43.6045,1.444
+Lavelanet,42.9336,1.8494
+Narbonne,43.1836,3.0042
+Nîmes,43.83833,4.35972
+Cuneo,44.38944,7.54778
+Bourg-d'Oisans,45.0558,6.0303
+Roanne,46.0367,4.0689
+Étampes,48.4343,2.1615
+London,51.5,-0.133
+Dunkirk,51.0383,2.3775
+Villers-Cotterêts,49.26,3.0906
+Chablis,47.8156,3.7975
+Semur-en-Auxois,47.4914,4.3336
+Le Grand-Bornand,45.9425,6.4258
+Val-d'Isère,45.4506,6.9781
+Albi,43.9289,2.1464
+Mazamet,43.4928,2.3742
+Foix,42.9664,1.6078
+Orthez,43.49,-0.77
+Cahors,44.4483,1.4414
+Marcoussis,48.6424,2.2307
+Strasbourg,48.58333,7.74583
+Obernai,48.46,7.48
+Esch-sur-Alzette,49.4969,5.9806
+Huy,50.517,5.233
+Beauvais,49.4303,2.0952
+Lisieux,49.15,0.23
+Saint-Méen-le-Grand,48.19,-2.1897
+Cambo-les-Bains,43.3589,-1.4003
+Luchon,42.7917,0.5947
+Béziers,43.3476,3.219
+Morzine,46.1789,6.7089
+Le Creusot,46.8014,4.4411
+Fromentine,46.891,-2.137
+Challans,46.8467,-1.8781
+La Châtaigneraie,46.65,-0.7392
+Lunéville,48.5894,6.5017
+Pforzheim,48.895,8.705
+Courchevel,45.415,6.63389
+Miramas,43.5822,5.0019
+Agde,43.3108,3.4758
+Lézat-sur-Lèze,43.2769,1.3475
+Mourenx,43.3794,-0.6069
+Corbeil-Essonnes,48.6139,2.482
+Charleroi,50.4,4.433
+Amiens,49.892,2.299
+Châteaubriant,47.7178,-1.375
+Lamballe,48.4694,-2.5167
+Saint-Léonard-de-Noblat,45.8383,1.4914
+Saint-Flour,45.0344,3.0936
+Castelsarrasin,44.0408,1.1078
+Valréas,44.385,4.9911
+Annemasse,46.1958,6.2364
+Paris,48.85667,2.35222
+La Ferté-sous-Jouarre,48.9497,3.1303
+Charleville-Mézières,49.7719,4.7161
+Joinville,-26.3204,-48.8437
+Nevers,46.9933,3.1572
+Lyon,45.76,4.84
+Gaillac,43.9014,1.8992
+Bagnères-de-Bigorre,43.065,0.1506
+Pornic,47.1167,-2.1
+Ville-d'Avray,48.8261,2.1933
+Luxembourg City,49.61167,6.13194
+Metz,49.12028,6.17778
+Soissons,49.3817,3.3236
+Forges-les-Eaux,49.6133,1.5456
+Bagnoles-de-l'Orne,48.5497,-0.4236
+Saint-Martin-de-Landelles,48.5467,-1.1708
+Lanester,47.7647,-3.3422
+Bazas,44.4328,-0.2106
+Lodève,43.7325,3.3203
+Les Deux Alpes,45.00722,6.12167
+Aime,45.5561,6.6494
+Cluses,46.0611,6.5794
+Régnié-Durette,46.1386,4.6419
+Melun,48.5406,2.66
+Saint-Omer,50.7461,2.2617
+Calais,50.94806,1.85639
+Verdun,49.162,5.3876
+Commercy,48.7619,5.5926
+Aix-les-Bains,45.6885,5.9153
+Perpignan,42.6986,2.8956
+Brive-la-Gaillarde,45.1583,1.5321
+Montluçon,46.3408,2.6033
+Orléans,47.9025,1.909
+Futuroscope,46.66917,0.36889
+Loudun,47.0106,0.0844
+Nantes,47.2181,-1.5528
+Agen,44.2049,0.6212
+Carpentras,44.0558,5.0489
+Avignon,43.95,4.8075
+Draguignan,43.5403,6.4667
+Évian-les-Bains,46.3833,6.5833
+Lausanne,46.51983,6.6335
+Freiburg,47.995,7.85
+Le Puy du Fou,46.89334,-0.932068
+Avesnes-sur-Helpe,50.1244,3.9267
+Sestrières,44.95,6.883
+Saint-Galmier,45.5908,4.3181
+Jonzac,45.4467,-0.4336
+Arpajon,48.5901,2.2476
+Dublin,53.35,-6.26028
+Enniscorthy,52.502064,-6.565876
+Roscoff,48.733333,-3.983333
+Plouay,47.9156,-3.3339
+La Châtre,46.5831,1.9878
+Meyrignac-l'Église,45.4017,1.8525
+Montauban,44.0181,1.3558
+Tarascon-sur-Ariège,42.8483,1.606
+Frontignan la Peyrade,43.4483,3.7561
+Vizille,45.0756,5.7732
+La Chaux-de-Fonds,47.10278,6.83
+Montceau-les-Mines,46.6678,4.3697
+Saint-Valery-en-Caux,49.861,0.71
+Vire,48.84,-0.89
+Plumelec,47.8386,-2.6394
+Chantonnay,46.6878,-1.0494
+Le Blanc,46.6344,1.0636
+Andorra Arcalis,42.5427806,1.492425
+Fribourg,46.8,7.15
+Montbéliard,47.51,6.8
+Disneyland Paris,48.86861,2.78194
+'s-Hertogenbosch,51.683,5.3
+Wasquehal,50.6694,3.1308
+Lac de Madine,48.917,5.733
+Le Monêtier-les-Bains,44.9769,6.5094
+Turin,45.07917,7.67611
+Argelès-Gazost,43.0,-0.1
+Pamplona,42.817,-1.65
+Hendaye,43.36,-1.77
+Palaiseau,48.7145,2.2457
+Saint-Brieuc,48.5136,-2.7653
+Perros-Guirec,48.8142,-3.4422
+Mayenne,48.167,-0.667
+Alençon,48.4306,0.0931
+Fécamp,49.76,0.38
+La Plagne,45.5064,6.67722
+Saint-Orens-de-Gameville,43.5518,1.5338
+Montpon-Ménestérol,45.01,0.16
+Lac de Vassivière,45.79722,1.87917
+Lille,50.6278,3.0583
+Roubaix,50.6901,3.18167
+Dover,51.1295,1.3089
+Portsmouth,50.80583,-1.08722
+Cherbourg,49.63,-1.62
+Poitiers,46.58,0.34
+Lourdes,43.09417,-0.04694
+Luçon,46.4556,-1.1647
+Les Sables-d'Olonne,46.4972,-1.7833
+Dinard,48.63,-2.06
+Évreux,49.02,1.15
+Châlons-sur-Marne,48.9575,4.365
+Villard-de-Lans,45.0708,5.5514
+Serre Chevalier,44.94444,6.56667
+Andorra,42.55,1.583
+Brétigny-sur-Orge,48.6114,2.3059
+Viry-Châtillon,48.6713,2.375
+San Sebastián,43.32139,-1.98556
+Libourne,44.92,-0.24
+Nogent-sur-Oise,49.2756,2.4683
+Sestriere,44.95,6.883
+La Bourboule,45.5892,2.74
+Blois,47.5939,1.3281
+La Défense,48.89167,2.24083
+Bron,45.7394,4.9139
+Villeurbanne,45.7667,4.8803
+Dijon,47.316667,5.016667
+Reims,49.2628,4.0347
+Le Havre,49.49,0.1
+Argentan,48.75,-0.02
+Quimper,47.9967,-4.0964
+Jaca,42.55,-0.55
+Alès,44.1281,4.0817
+Sarrebourg,48.74,7.05
+Épinal,48.1744,6.4512
+Geneva,46.20167,6.14694
+Millau,44.0986,3.0783
+Castillon-la-Bataille,44.854,-0.043
+Labastide-d'Armagnac,43.9703,-0.185
+Cauterets,42.89,-0.11
+Pornichet,47.2775,-2.3389
+Pontchâteau,47.43,-2.083
+La Haie-Fouassière,47.1564,-1.3981
+Neufchâtel-en-Bray,49.73,1.44
+Liévin,50.4228,2.7786
+Luz Ardiden,42.88556,-0.06139
+Ruelle-sur-Touvre,45.6786,0.2211
+Clermont-Ferrand,45.7831,3.0824
+Nemours,48.2674,2.697
+West Berlin,52.5,13.28
+Karlsruhe,49.0092097,8.4039514
+Stuttgart,48.7775,9.18
+Brive,45.1583,1.5321
+Bayonne,43.49,-1.48
+Saint-Julien-en-Genevois,46.1436,6.0811
+Boulogne-Billancourt,48.8352,2.2409
+Nanterre,48.8988,2.1969
+Meudon,48.812309,2.23815
+Levallois-Perret,48.895,2.2872
+Evreux,49.02,1.15
+Villers-sur-Mer,49.3214,-0.005
+Saint-Hilaire-du-Harcouët,48.5783,-1.0908
+Superbagnères,42.768,0.577
+Cosne-sur-Loire,47.4122,2.9275
+Autrans,45.176,5.542
+Luz-Saint-Sauveur,42.8725,-0.00056
+Laruns,42.983,-0.416
+Bondy,48.9022,2.4828
+Bobigny,48.9106,2.4397
+Louvroil,50.265,3.96
+Valenciennes,50.35806,3.52333
+Béthune,50.5303,2.6408
+Cergy-Pontoise,49.03611,2.06306
+Les Échelles,45.4375,5.7547
+Crans-Montana,46.317,7.483
+Villié-Morgon,46.1631,4.6814
+Pantin,48.8966,2.4017
+Fontenay-sous-Bois,48.8517,2.4772
+Nogent-sur-Marne,48.8375,2.4833
+La Rochelle,46.16,-1.15
+Fleurance,43.8503,0.6644
+Roquefort-sur-Soulzon,43.9775,2.9897
+La Tour-du-Pin,45.565,5.4444
+Alfortville,48.805,2.4239
+Basel,47.55472,7.59056
+Beauraing,50.10917,4.9567
+Cancale,48.6769,-1.8506
+Concarneau,47.8761,-3.9178
+Valence d'Agen,44.1111,0.8903
+Martigues,43.4053,5.0475
+Manosque,43.8342,5.7839
+Orcières-Merlette,44.697,6.322
+Sens,48.1975,3.2877
+Compiègne,49.4149,2.8231
+Thonon-les-Bains,46.3627,6.475
+Veurey,45.272,5.616
+Auxerre,47.7986,3.5672
+Frankfurt,50.11056,8.68222
+Wiesbaden,50.0825,8.24
+Damazan,44.2911,0.2764
+Lézignan-Corbières,43.2014,2.7584
+Trets,43.4475,5.6836
+Voreppe,45.2986,5.6375
+Captieux,44.2928,-0.2589
+Neuville-de-Poitou,46.6861,0.2458
+Angers,47.473612,-0.554167
+Deauville,49.36,0.08
+Les Menuires,45.32361,6.5375
+Alpe d'Huez,45.06028,6.07139
+Le Perreux-sur-Marne,48.8422,2.5036
+Leiden,52.16,4.49
+Sint Willebrord,51.55028,4.59167
+Saint-Amand-les-Eaux,50.4486,3.4281
+Caen,49.18139,-0.36361
+Saint-Émilion,44.8936,-0.1547
+Biarritz,43.48,-1.56
+Besse-en-Chandesse,45.5139,2.9336
+Saint-Dier-d'Auvergne,45.676,3.483
+St-Étienne,45.4347,4.3903
+Epernay,49.0403,3.96
+Saint Germain en Laye,48.8989,2.0938
+Auch,43.6465,0.5855
+Oloron-Sainte-Marie,43.1947,-0.6056
+Vitoria-Gasteiz,42.85,-2.683
+Morcenx,44.0339,-0.9131
+Jaunay-Clan,46.6864,0.3708
+Altkirch ,47.62,7.24
+Chamonix,45.9231,6.8697
+Saint-Trivier-sur-Moignans,46.0667,4.9
+Saint-Jean-de-Monts,46.7936,-2.0587
+Leuven,50.883,4.7
+Bastogne,50.00417,5.72
+Valentigney,47.4633,6.8331
+Divonne-les-Bains,46.3567,6.1428
+Montgenèvre,44.9316,6.7219
+Le Barcarès,42.7892,3.0364
+Font-Romeu-Odeillo-Via,42.4983,2.0347
+Saint-Lary-Soulan,42.82,0.32
+Lacanau,44.9803,-1.0783
+Sainte-Foy-la-Grande,44.84,0.22
+Tulle,45.26778,1.77056
+Molenbeek,50.85778,4.31583
+Sablé-sur-Sarthe,47.8505,-0.3292
+Saint-Gilles-Croix-de-Vie,46.6983,-1.9394
+Angoulême,45.65,0.16
+Barcelonnette,44.3867,6.6531
+Valloire,45.1658,6.4292
+Pouilly-en-Auxois,47.2633,4.5564
+Plymouth,50.37139,-4.14222
+Morlaix,48.5783,-3.8267
+Dieppe,49.925,1.075
+Harelbeke,50.85,3.3
+Gaillard,46.1858,6.2083
+Savines-le-Lac,44.5269,6.4056
+Colomiers,43.6139,1.3367
+La Seu d'Urgell,42.358,1.456
+Vouvray,47.4128,0.8
+Scheveningen,52.10806,4.27306
+Sint-Niklaas,51.167,4.133
+Moûtiers,45.4858,6.5344
+Thuir,42.6331,2.7572
+Bourg-Madame,42.4353,1.9447
+Bourges,47.0844,2.3964
+Royan,45.62,-1.03
+Carnon-Plage,43.6169,4.0083
+Orcières,44.6853,6.3258
+Dinant,50.267,4.917
+Rungis,48.7483,2.3497
+Gourette,42.957024,-0.332055
+Mont-de-Marsan,43.89,-0.5
+Ciney,50.3,5.1
+Saarlouis,49.317,6.75
+Sint-Pieters-Woluwe,50.833,4.467
+Maastricht,50.85,5.683
+Digne,44.0933,6.2364
+Aubagne,43.2908,5.5708
+La Grande-Motte,43.5614,4.0858
+Castelnaudary,43.3192,1.9544
+Arlon,49.683,5.817
+Jambes,50.45,4.86667
+Sète,43.4053,3.6975
+Fontainebleau,48.4097,2.7025
+Tournai,50.60556,3.38806
+Vals-les-Bains,44.6664,4.3669
+Privas,44.7358,4.597
+Ivrea,45.467,7.883
+Cologne,50.93639,6.95278
+Châteaulin,48.1975,-4.0886
+La Baule,47.2867,-2.3908
+Ax-les-Thermes,42.7203,1.8397
+Hyères,43.1199,6.1316
+Toulon,43.12583,5.93056
+Peyrehorade,43.546,-1.097
+Val d'Isère,45.4506,6.9781
+Arbois,46.9036,5.7747
+Herentals,51.183,4.833
+Saint-Nazaire,47.27361,-2.21389
+Antibes,43.5808,7.1239
+Bourgoin,45.5861,5.2736
+Pontoise,49.0516,2.1017
+Chalon-sur-Saône,46.7806,4.8528
+Namur,50.467,4.867
+Puy de Dôme,45.77194,2.9625
+Seurre,46.9992,5.1475
+Ghent,51.05361,3.72528
+Le Tréport,50.06,1.37
+Bédoin,44.124,5.1805
+Cannes,43.5513,7.0128
+Montjuïc circuit,41.36639,2.15167
+Barcelona ,41.38278,2.17694
+Zürich,47.37444,8.54111
+Châtellerault,46.8178,0.5461
+Amsterdam,52.37278,4.89361
+Beveren,51.2,4.25
+Aix les Bains,45.6885,5.9153
+Epinal,48.1744,6.4512
+St. Etienne,45.4347,4.3903
+Vichy,46.1278,3.4267
+La Guerche-de-Bretagne,47.9422,-1.2286
+St. Brieuc,48.5136,-2.7653
+Niort,46.3258,-0.4606
+Menton,43.775,7.5
+Boulogne-sur-Mer,50.7264,1.6147
+Aosta,45.733,7.317
+Sanremo,43.8175,7.775
+Dôle,47.0931,5.4906
+La Roche-sur-Yon,46.6705,-1.426
+Arcachon,44.65,-1.17
+Laon,49.5639,3.6244
+Lons-le-Saunier,46.6744,5.5539
+Champagnole,46.7481,5.9078
+La Roche sur Yon,46.6705,-1.426
+Malo-les-Bains,51.0383,2.3775
+Les Sables d'Olonne,46.4972,-1.7833
+Dunkerque,51.0383,2.3775
+Mülhausen,47.75,7.34
+Longwy,49.52,5.7606
+Douai,50.3714,3.08
+La Planche des Belles Filles,47.77222,6.77778
+Nuits-Saint-Georges,47.1383,4.9511
+Peyragudes,42.79,0.445
+Romans-sur-Isère,45.0464,5.0517
+Col d'Izoard,44.81972,6.735
+Salon-de-Provence,43.6406,5.0972
+Utah Beach,49.41806,-1.17639
+Cherbourg-en-Cotentin,49.639,-1.625
+Le Lioran,45.0459,2.45
+Lac de Payolle,42.93444,0.29722
+Chalet Reynard,44.1525,5.31917
+Villars-les-Dombes,45.9989,5.0299
+Culoz,45.85,5.78
+Saint Gervais-les-Bains,45.8933,6.7139
+Zeeland,51.567,3.75
+Mûr-de-Bretagne,48.2008,-2.9847
+Plateau de Beille,42.725333,1.690875
+Pra-Loup,44.369,6.601
+Harrogate,53.99194,-1.53778
+Sheffield,53.38083,-1.47028
+Lille Metropole,50.63722,3.06306
+Oyonnax,46.2561,5.6556
+Chamrousse,45.1092,5.8744
+Risoul,44.6497,6.6408
+Hautacam,42.972222,-0.008056
+Ax 3 Domaines,42.70083,1.81389
+Saint-Amand-Montrond,46.7,2.51
+Mont Ventoux,44.17444,5.27889
+Chorges,44.5464,6.2772
+Semnoz,45.79722,6.10472
+Porrentruy,47.417,7.083
+Bellegarde-sur-Valserine,46.1083,5.8267
+Chartres,48.456,1.484
+Mont des Alouettes,46.89472,-1.01028
+Redon,47.6522,-2.0836
+Cap Fréhel,48.683,-2.317
+Châteauroux,46.8103,1.6911
+Super Besse,45.5107,2.85675
+Carmaux,44.05,2.1589
+Gueugnon,46.6019,4.0617
+Bourg-lès-Valence,44.9486,4.8961
+Col du Tourmalet,42.908194,0.145111
+Pauillac,45.1999,-0.7488
+Brignoles,43.4058,6.0615
+Issoudun,46.9608,1.9944
+Saint-Fargeau,47.6417,3.0719
+Verbier,46.1,7.217
+Aubenas,44.6206,4.3911
+Prato Nevoso,44.2566972,7.78905
+Jausiers,44.4186,6.7314
+Canterbury,51.28,1.08
+Joigny,47.9831,3.3978
+Autun,46.9517,4.2994
+Tignes,45.4683,6.9056
+Plateau-de-Beille,42.725333,1.690875
+Loudenvielle,42.7972,0.4119
+La Toussuire,45.2472222222,6.30305555556
+Noirmoutier-en-l'Île,47.0044,-2.2533
+Guéret,46.1714,1.8692
+La Mongie,42.91,0.17917
+Meaux,48.9603,2.8883
+Saint-Dizier,48.6383,4.9497
+Saint-Maixent-l'École,46.4136,-0.2069
+Saarbrücken,49.233,7.0
+Château-Thierry,49.04,3.4
+Bar-le-Duc,48.7719,5.1603
+Plateau de Bonascre,42.70083,1.81389
+Sarran,45.4094,1.9392
+Villeneuve-sur-Lot,44.4081,0.705
+Maubeuge,50.2775,3.9734
+Thionville,49.3589,6.1692
+Piau-Engaly,42.783895,0.158403
+Corrèze,45.333,1.833
+Le Cap d'Agde,43.28417,3.50056
+Neuchâtel,47.0,6.933
+Les Arcs,45.57167,6.80778
+Lannion,48.7333,-3.4542
+L'Alpe d'Huez,45.06028,6.07139
+Guzet-Neige,42.78722,1.29861
+Armentières,50.6881,2.8811
+Brighton,50.82083,-0.1375
+Trélissac,45.1967,0.7833
+Val Thorens,45.29806,6.58
+Avoriaz,46.19083,6.775
+Lac Saint-Point,46.81528,6.31389
+Isola 2000,44.18667,7.15833
+Montlhéry,48.6392,2.2722
+Koblenz,50.35972,7.59778
+Chassieu,45.745,4.966
+Saint-Herblain,47.2122,-1.6497
+Val-Louron,42.7903,0.3897
+L'Isle-d'Abeau,45.6233,5.2305
+Machecoul,46.9939,-1.8217
+Ancenis,47.3733,-1.2936
+Épinay-sous-Sénart,48.6948,2.5147
+Renazé,47.7942,-1.0569
+Chaumeil,45.4569,1.8825
+Saint-Quentin-en-Yvelines,48.7881,2.0446
+Pont-Audemer,49.35639,0.51556
+Lans-en-Vercors,45.1292,5.5892
+Aubisque,42.97667,-0.33972
+Noisy-le-Sec,48.8894,2.4503
+La Ruchère,45.4381,5.7747
+Villefranche-sur-Saône,45.9833,4.7167
+Fontaine-au-Pire,50.1306,3.3756
+Île d'Oléron,45.925,-1.2825
+Möhlin,47.55,7.85
+Mouscron,50.733,3.217
+Aulnay-sous-Bois,48.9386,2.4906
+Pla d'Adet,42.8152,0.2918
+Circuit Zolder,50.98889,5.25556
+Hasselt,50.93,5.3375
+Le Pleynet,45.2557,5.9931
+Laplume,44.1128,0.5322
+Prapoutel,45.2557,5.9931
+Ballon d'Alsace,47.82222,6.84528
+Saint-Germain-en-Laye,48.8989,2.0938
+Senlis,49.2081,2.5875
+Bornem,51.1,4.233
+Super-Lioran,45.0459,2.45
+Saint-Pol-de-Léon,48.6861,-3.985
+Méribel,45.3967306,6.5662694
+Les Orres,44.5147,6.5514
+Argelès-sur-Mer,42.5449,3.0235
+Le Revard,45.68194,5.97556
+Ballon d’Alsace,47.82222,6.84528
+Marche-en-Famenne,50.217,5.333
+Le Touquet,50.5186,1.595
+Mers-les-Bains,50.0681,1.3886
+Mont-Ventoux,44.17444,5.27889
+Brasschaat,51.3,4.5
+Dole,47.0892,5.4913
+Pau,43.2951,-0.3707
+Saint-Girons,42.9833,1.1000
+Embrun,44.5494,6.4944
+Granville,48.8328,-1.5833
+L'Isle-Jourdain,43.6378,1.0403
+Vielha Val d'Aran,42.6986,0.8269
+Chantilly,49.1845,2.4750
+Mende,44.5078,3.5056
+Gap,44.5592,6.0787
+Saint-Gaudens,43.1031,0.7225
+Maubourguet Pays du Val d’Adour,43.3433,0.2631
+Bergerac,44.8542,0.4794
+Évry,48.6333,2.4500
+Bonneval,48.3342,1.3969
+Les Essarts,46.7600,-1.4145
+Revel,43.4219,1.8431
+Vatan,47.0111,1.6592
+Tonnerre,47.8131,3.9969
+Brest,48.3904,-4.4861
+Cérilly,46.5324,3.4333
+Waregem - Compiègne,50.8536,3.2644
+Cognac,45.6944,-0.3297
+Saint Grégoire,48.1356,-1.6292
+Antony/Parc de Sceaux,48.7733,2.2975
+Chambord,47.6167,1.5172
+Waterloo,50.7167,4.4000
+Saint-Denis,48.9333,2.3667
+Dax,43.7106,-1.0500
+Vitré,48.1403,-1.2081
+Montaigu,46.9644,-1.2883
+Laval,48.0686,-0.7667
+Marennes,45.6794,-1.1464
+Sauternes,44.5986,-0.2514
+Valence,44.9333,4.9000
+Besse,45.6000,3.4667
+Sainte-Geneviève-des-Bois,48.6883,2.3583
+Moutiers,45.5583,6.5772
+Péronne,49.8972,2.9500
+Isola,44.1056,6.7925
+Valkenburg,50.8719,5.8519
+St Gervais,45.8936,6.7156
+St Gaudens,43.1031,0.7225
+Lugny,46.3667,4.7167
+Saint-Gervais,45.8936,6.7156
+Fontaine,45.1903,5.6842
+Nancy,48.6921,6.1844
+Santenay,46.9517,4.6819
+Vitre,48.1072,-1.7347
+Morzine Avoriaz,46.1806,6.7044
+Montreuil,48.8644,2.4333
+Langon,44.5903,-0.2767
+Domaine du Rouret,43.5828,6.8133
+Saintes,45.7456,-0.6272
+Saint-Priest,45.7436,4.9333
+Nay,43.2878,-0.3886
+Rochefort,45.9369,-0.9667
+Beringen,50.9369,4.9333
+Spa,50.4094,5.8889
+Flers,48.7597,-0.6097
+Mazé-Montgeoffroy,47.3986,-0.3031
+Rossignol Voiron,45.4183,5.5914
+Merlin-Plage,48.6297,-3.1464
+Mons,50.4544,3.9566
+Chaumont,48.1111,5.1378
+Forest,50.7636,4.3217
+Ruffec,46.0914,-0.2061
+Charleville,49.7697,4.7142
+Pont l'Evêque,49.2644,0.2375
+Blain,47.4247,-1.9475
+Saint-Vincent,45.6422,-1.2167
+Circuit de la Prairie Caen,49.1778,-0.3608
+Circuit de Rouen-Les-Essarts,49.4625,1.1236
+Le Puy,45.0436,3.8806
+Trouville,49.3703,0.0625
+Saint-Raphaël,43.4075,6.7972
+Saint-Quentin,49.8953,3.2875
+Evian,46.4000,6.5833
+Gex,46.2611,6.0597
+Andorra-Arcalis,42.5492,1.5669
+La Caverne du Pont-d'Arc,44.3814,4.3819
+Finhaut-Émosson,46.0456,7.0156
+La Pierre Saint-Martin,43.0708,-0.7911
+La Toussuire - Les Sybelles,45.2325,6.4239
+Arenberg Porte du Hainaut,50.3686,3.0047
+Gérardmer La Mauselaine,48.0800,6.8725
+Saint-Lary Pla d’Adet,42.7892,0.2500
+Calvi,42.5672,8.7919
+La Toussuire-Les Sybelles,45.2325,6.4239
+Annonay-Davézieux,45.2539,4.6500
+Lavaur,43.6692,1.8419
+Col du Galibier-Serre Chevalier,45.0642,6.4050
+Super-Besse Sancy,45.5444,2.8336
+Gourette–Col d'Aubisque,42.9744,-0.3469
+Val d'Aran/Pla-de-Beret,42.6950,0.7697
+Saint-Lary-Soulan Pla d'Adet,42.7892,0.2500
+Sedan,49.6917,4.9419
+Cap Découverte,43.6678,2.1267
+Cork,51.8983,-8.4750
+Eurotunnel,50.9500,1.8000
+Pal,42.7328,1.7119
+Ales,44.1383,4.0783
+Sceaux,48.7708,2.3208
+Seignosse le Penon,43.7425,-1.4536
+Pyrénées 2000,42.6136,1.8847
+Châtel,46.2572,6.8661
+Orange,44.1378,4.8056
+Felsberg,49.0925,7.7278
+Belfort/Ballon d’Alsace,47.6778,6.8597
+Circuit des Essarts,49.0139,0.9681
+St. Gaudens,43.1031,0.7225
+
