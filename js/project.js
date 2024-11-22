@@ -184,6 +184,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const upperValSpan = d3.select('#upper-val');
     const minGap = 0.99;
 
+    function updateValuePositions() {
+        const lowerVal = +lowerSlider.property('value');
+        const upperVal = +upperSlider.property('value');
+        const lowerMin = +lowerSlider.property('min');
+        const lowerMax = +lowerSlider.property('max');
+        const upperMin = +upperSlider.property('min');
+        const upperMax = +upperSlider.property('max');
+
+        const lowerPercent = ((lowerVal - lowerMin) / (lowerMax - lowerMin)) * 100;
+        const upperPercent = ((upperVal - upperMin) / (upperMax - upperMin)) * 100;
+
+        // Positionne les valeurs en fonction de la position du slider
+        lowerValSpan.style('left', `calc(${lowerPercent}% - 20px)`);
+        lowerValSpan.text(parseInt(lowerVal));
+
+        upperValSpan.style('left', `calc(${upperPercent}% - 20px)`);
+        upperValSpan.text(parseInt(upperVal));
+    }
+
     function updateSlidersLow(){
         let lowerVal = +lowerSlider.property('value');
         let upperVal = +upperSlider.property('value');
@@ -205,6 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lowerValSpan.text(parseInt(lowerVal));
         upperValSpan.text(parseInt(upperVal));
+
+        updateValuePositions();
     };
 
     function updateSlidersHigh(){
@@ -228,9 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lowerValSpan.text(parseInt(lowerVal));
         upperValSpan.text(parseInt(upperVal));
+
+        updateValuePositions();
     };
 
     // Attacher les événements
     lowerSlider.on('input', updateSlidersLow);
     upperSlider.on('input', updateSlidersHigh);
+
+    updateValuePositions();
 });
