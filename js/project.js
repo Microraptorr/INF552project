@@ -353,4 +353,63 @@ function exportToCSV(array, filename = "data.csv") {
     document.body.removeChild(link); // Clean up
 }
 
-  
+
+// Sliders
+
+document.addEventListener('DOMContentLoaded', () => {
+    const lowerSlider = d3.select('#lower');
+    const upperSlider = d3.select('#upper');
+    const lowerValSpan = d3.select('#lower-val');
+    const upperValSpan = d3.select('#upper-val');
+    const minGap = 0.99;
+
+    function updateSlidersLow(){
+        let lowerVal = +lowerSlider.property('value');
+        let upperVal = +upperSlider.property('value');
+        let upperMax = +upperSlider.property('max');
+
+        if (upperVal < lowerVal + minGap) {
+            if (lowerVal + minGap >= upperMax) {
+                console.log('highmax');
+                upperSlider.property('value', upperMax);
+                upperVal = upperMax;
+                lowerSlider.property('value', upperMax - minGap);
+                lowerVal = upperMax;
+            } else if (lowerVal + minGap < upperMax) {
+                console.log('high')
+                upperSlider.property('value', lowerVal + minGap);
+                upperVal = lowerVal + minGap;
+            }
+        }
+
+        lowerValSpan.text(parseInt(lowerVal));
+        upperValSpan.text(parseInt(upperVal));
+    };
+
+    function updateSlidersHigh(){
+        let lowerVal = +lowerSlider.property('value');
+        let upperVal = +upperSlider.property('value');
+        let lowerMin = +lowerSlider.property('min');
+
+        if (lowerVal > upperVal - minGap) {
+            if (upperVal - minGap <= lowerMin) {
+                console.log('lowmax')
+                lowerSlider.property('value', lowerMin);
+                lowerVal = lowerMin;
+                upperSlider.property('value', lowerMin + minGap);
+                upperVal = lowerMin;
+            } else if (upperVal - minGap > lowerMin) {
+                console.log('low');
+                lowerSlider.property('value', upperVal - minGap);
+                lowerVal = upperVal - minGap;
+            }
+        }
+
+        lowerValSpan.text(parseInt(lowerVal));
+        upperValSpan.text(parseInt(upperVal));
+    };
+
+    // Attacher les événements
+    lowerSlider.on('input', updateSlidersLow);
+    upperSlider.on('input', updateSlidersHigh);
+});

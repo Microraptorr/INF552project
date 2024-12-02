@@ -23,109 +23,106 @@
         </style>
 
         <style type="text/css">
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
 
-        #map {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            height: 700px;
-            width: 800px;
-            z-index: 5;
-        }
+            #map { 
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                height: 700px;
+                width: 800px;
+                z-index: 5;
+            }
 
-        .multi-range {
+            body {
+                padding: 0;
+                background-color: #333;
+            }
+
+            input[type=range] {
+                box-sizing: border-box;
+                appearance: none;
+                width: 800px;
+                margin: 0;
+                padding: 0 2px;
+                overflow: hidden;
+                border: 0;
+                border-radius: 1px;
+                outline: none;
+                background: linear-gradient(grey, grey) no-repeat center;
+                background-size: 100% 2px;
+                pointer-events: none;
+
+                &:active,
+                &:focus {
+                    outline: none;
+                }
+
+            &::-webkit-slider-thumb {
+                    height: 28px;
+                    width: 28px;
+                    border-radius: 28px;
+                    background-color: #fff;
+                    position: relative;
+                    margin: 5px 0;
+                    cursor: pointer;
+                    appearance: none;
+                    pointer-events: all;
+                    box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+                    &::before {
+                            content: ' ';
+                            display: block;
+                            position: absolute;
+                            top: 13px;
+                            left: 100%;
+                            width: 2000px;
+                            height: 2px;
+                    }
+                }
+            }
+
+            .multi-range {
             position: absolute;
-            top: 50px; 
-            left: 850px; 
+            height: 50px;
+            top: 50px;
+            left: 850px;
+            width: 300px;
             z-index: 10;
-            height: 50px; 
-            width: 400px; 
-        }
 
+            input[type=range] {
+                position: absolute;
+                
+                &:nth-child(1) {
+                    &::-webkit-slider-thumb::before {
+                        background-color: red;
+                    }
+                }
 
-        #lower-val, #upper-val {
-            position: absolute;
-            color: white;
-            font-size: 14px;
-            z-index: 15;
-            pointer-events: none;
-        }
+                &:nth-child(2) {
+                    background: none;
 
-        #lower-val {
-            top: -30px; /* Place la valeur au-dessus du curseur gauche */
-        }
+                    &::-webkit-slider-thumb::before {
+                        background-color: grey; 
+                    }
+                }
+            }
+            }
 
-        #upper-val {
-            top: 30px; /* Place la valeur en dessous du curseur droit */
-        }
+            #lower-val, #upper-val {
+                position: absolute;
+                color: white;
+                font-size: 14px;
+                z-index: 15;
+                pointer-events: none;
+            }
 
-        input[type="range"] {
-            position: absolute;
-            width: 100%;
-            height: 6px;
-            background: #ddd;
-            border-radius: 5px;
-            outline: none;
-            opacity: 0.7;
-            pointer-events: auto;
-            z-index: 10;
-            -webkit-appearance: none;
-            appearance: none;
-        }
+            #lower-val {
+                top: -20px; /* Place la valeur au-dessus du curseur gauche */
+            }
 
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 30px;
-            height: 30px;
-            background: #fff;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 20;
-            position: relative;
-            pointer-events: auto;
-        }
+            #upper-val {
+                top: 40px; /* Place la valeur en dessous du curseur droit */
+            }
 
-        input[type="range"]::-moz-range-thumb {
-            width: 30px;
-            height: 30px;
-            background: #fff;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 20;
-            position: relative;
-            pointer-events: auto;
-        }
-
-
-        /* input[type="range"]::-ms-thumb {
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            cursor: pointer;
-            pointer-events: auto;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .slider-value {
-            position: absolute;
-            font-size: 0.9em;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2px 5px;
-            border-radius: 5px;
-        } */
         </style>
     
     </head>
@@ -140,12 +137,10 @@
         </div>
 
         <div class="multi-range">
-            <div class="range-container">
-                <span id="lower-val">1920</span>
-                <span id="upper-val">2010</span>
-                <input type="range" min="1903" max="2024" value="1920" id="lower">
-                <input type="range" min="1903" max="2024" value="2010" id="upper">
-            </div>
+            <input type="range" min="1903" max="2024" value="1920" id="lower">
+            <input type="range" min="1903" max="2024" value="2010" id="upper">
+            <span id="lower-val">1920</span>
+            <span id="upper-val">2010</span>
         </div>
             </body>
 
