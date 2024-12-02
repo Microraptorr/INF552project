@@ -370,13 +370,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (upperVal < lowerVal + minGap) {
             if (lowerVal + minGap >= upperMax) {
-                console.log('highmax');
                 upperSlider.property('value', upperMax);
                 upperVal = upperMax;
                 lowerSlider.property('value', upperMax - minGap);
                 lowerVal = upperMax;
             } else if (lowerVal + minGap < upperMax) {
-                console.log('high')
                 upperSlider.property('value', lowerVal + minGap);
                 upperVal = lowerVal + minGap;
             }
@@ -393,13 +391,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (lowerVal > upperVal - minGap) {
             if (upperVal - minGap <= lowerMin) {
-                console.log('lowmax')
                 lowerSlider.property('value', lowerMin);
                 lowerVal = lowerMin;
                 upperSlider.property('value', lowerMin + minGap);
                 upperVal = lowerMin;
             } else if (upperVal - minGap > lowerMin) {
-                console.log('low');
                 lowerSlider.property('value', upperVal - minGap);
                 lowerVal = upperVal - minGap;
             }
