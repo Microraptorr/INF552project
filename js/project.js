@@ -324,7 +324,10 @@ function overviewGraph(data){
         .attr("fill", d => d.nationality ? colorScale(d.nationality) : "black")
 
 
-
+    // Add event listener for circle click
+    svg.selectAll("circle").on("click", function(event, d) {
+        console.log(d.name);
+    });
 }
 
 function compareStringsInsensitive(str1, str2) {
