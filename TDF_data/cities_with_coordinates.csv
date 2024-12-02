@@ -9,7 +9,7 @@ Nantua,46.1519,5.6078
 Périgueux,45.1929,0.7217
 Eymet,44.6686,0.3989
 Blagnac,43.6364,1.3906
-Laissac-Sévérac-l'Église,44.381,2.822
+Laissac-Sévérac-l Église,44.381,2.822
 Le Puy-en-Velay,45.04444,3.88472
 La Mure,44.9039,5.7881
 Briançon,44.8964,6.6356
@@ -75,7 +75,7 @@ Tours,47.393611,0.689167
 Saint-Pourçain-sur-Sioule,46.3083,3.29
 Givors,45.5914,4.7694
 Vaison-la-Romaine,44.2422,5.0724
-Le Bourg-d'Oisans,45.0558,6.0303
+Le Bourg-d Oisans,45.0558,6.0303
 Annecy,45.916,6.133
 Versailles,48.80472,2.12028
 Liège,50.63972,5.57056
@@ -118,7 +118,7 @@ Salies-de-Béarn,43.471,-0.925
 Bordeaux,44.84,-0.58
 Longjumeau,48.6943,2.2958
 Monaco,43.73111,7.42
-Cap d'Agde,43.28417,3.50056
+Cap d Agde,43.28417,3.50056
 Girona,41.98444,2.82111
 Barcelona,41.38278,2.17694
 Andorra la Vella,42.5,1.5
@@ -138,7 +138,7 @@ Lavelanet,42.9336,1.8494
 Narbonne,43.1836,3.0042
 Nîmes,43.83833,4.35972
 Cuneo,44.38944,7.54778
-Bourg-d'Oisans,45.0558,6.0303
+Bourg-d Oisans,45.0558,6.0303
 Roanne,46.0367,4.0689
 Étampes,48.4343,2.1615
 London,51.5,-0.133
@@ -147,7 +147,7 @@ Villers-Cotterêts,49.26,3.0906
 Chablis,47.8156,3.7975
 Semur-en-Auxois,47.4914,4.3336
 Le Grand-Bornand,45.9425,6.4258
-Val-d'Isère,45.4506,6.9781
+Val-d Isère,45.4506,6.9781
 Albi,43.9289,2.1464
 Mazamet,43.4928,2.3742
 Foix,42.9664,1.6078
@@ -195,12 +195,12 @@ Lyon,45.76,4.84
 Gaillac,43.9014,1.8992
 Bagnères-de-Bigorre,43.065,0.1506
 Pornic,47.1167,-2.1
-Ville-d'Avray,48.8261,2.1933
+Ville-d Avray,48.8261,2.1933
 Luxembourg City,49.61167,6.13194
 Metz,49.12028,6.17778
 Soissons,49.3817,3.3236
 Forges-les-Eaux,49.6133,1.5456
-Bagnoles-de-l'Orne,48.5497,-0.4236
+Bagnoles-de-l Orne,48.5497,-0.4236
 Saint-Martin-de-Landelles,48.5467,-1.1708
 Lanester,47.7647,-3.3422
 Bazas,44.4328,-0.2106
@@ -240,7 +240,7 @@ Enniscorthy,52.502064,-6.565876
 Roscoff,48.733333,-3.983333
 Plouay,47.9156,-3.3339
 La Châtre,46.5831,1.9878
-Meyrignac-l'Église,45.4017,1.8525
+Meyrignac-l Église,45.4017,1.8525
 Montauban,44.0181,1.3558
 Tarascon-sur-Ariège,42.8483,1.606
 Frontignan la Peyrade,43.4483,3.7561
@@ -256,7 +256,7 @@ Andorra Arcalis,42.5427806,1.492425
 Fribourg,46.8,7.15
 Montbéliard,47.51,6.8
 Disneyland Paris,48.86861,2.78194
-'s-Hertogenbosch,51.683,5.3
+ s-Hertogenbosch,51.683,5.3
 Wasquehal,50.6694,3.1308
 Lac de Madine,48.917,5.733
 Le Monêtier-les-Bains,44.9769,6.5094
@@ -282,7 +282,7 @@ Cherbourg,49.63,-1.62
 Poitiers,46.58,0.34
 Lourdes,43.09417,-0.04694
 Luçon,46.4556,-1.1647
-Les Sables-d'Olonne,46.4972,-1.7833
+Les Sables-d Olonne,46.4972,-1.7833
 Dinard,48.63,-2.06
 Évreux,49.02,1.15
 Châlons-sur-Marne,48.9575,4.365
@@ -312,7 +312,7 @@ Sarrebourg,48.74,7.05
 Geneva,46.20167,6.14694
 Millau,44.0986,3.0783
 Castillon-la-Bataille,44.854,-0.043
-Labastide-d'Armagnac,43.9703,-0.185
+Labastide-d Armagnac,43.9703,-0.185
 Cauterets,42.89,-0.11
 Pornichet,47.2775,-2.3389
 Pontchâteau,47.43,-2.083
@@ -362,7 +362,7 @@ Basel,47.55472,7.59056
 Beauraing,50.10917,4.9567
 Cancale,48.6769,-1.8506
 Concarneau,47.8761,-3.9178
-Valence d'Agen,44.1111,0.8903
+Valence d Agen,44.1111,0.8903
 Martigues,43.4053,5.0475
 Manosque,43.8342,5.7839
 Orcières-Merlette,44.697,6.322
@@ -382,7 +382,7 @@ Neuville-de-Poitou,46.6861,0.2458
 Angers,47.473612,-0.554167
 Deauville,49.36,0.08
 Les Menuires,45.32361,6.5375
-Alpe d'Huez,45.06028,6.07139
+Alpe d Huez,45.06028,6.07139
 Le Perreux-sur-Marne,48.8422,2.5036
 Leiden,52.16,4.49
 Sint Willebrord,51.55028,4.59167
@@ -391,7 +391,7 @@ Caen,49.18139,-0.36361
 Saint-Émilion,44.8936,-0.1547
 Biarritz,43.48,-1.56
 Besse-en-Chandesse,45.5139,2.9336
-Saint-Dier-d'Auvergne,45.676,3.483
+Saint-Dier-d Auvergne,45.676,3.483
 St-Étienne,45.4347,4.3903
 Epernay,49.0403,3.96
 Saint Germain en Laye,48.8989,2.0938
@@ -429,7 +429,7 @@ Harelbeke,50.85,3.3
 Gaillard,46.1858,6.2083
 Savines-le-Lac,44.5269,6.4056
 Colomiers,43.6139,1.3367
-La Seu d'Urgell,42.358,1.456
+La Seu d Urgell,42.358,1.456
 Vouvray,47.4128,0.8
 Scheveningen,52.10806,4.27306
 Sint-Niklaas,51.167,4.133
@@ -467,7 +467,7 @@ Ax-les-Thermes,42.7203,1.8397
 Hyères,43.1199,6.1316
 Toulon,43.12583,5.93056
 Peyrehorade,43.546,-1.097
-Val d'Isère,45.4506,6.9781
+Val d Isère,45.4506,6.9781
 Arbois,46.9036,5.7747
 Herentals,51.183,4.833
 Saint-Nazaire,47.27361,-2.21389
@@ -505,9 +505,7 @@ Arcachon,44.65,-1.17
 Laon,49.5639,3.6244
 Lons-le-Saunier,46.6744,5.5539
 Champagnole,46.7481,5.9078
-La Roche sur Yon,46.6705,-1.426
 Malo-les-Bains,51.0383,2.3775
-Les Sables d'Olonne,46.4972,-1.7833
 Dunkerque,51.0383,2.3775
 Mülhausen,47.75,7.34
 Longwy,49.52,5.7606
@@ -516,7 +514,7 @@ La Planche des Belles Filles,47.77222,6.77778
 Nuits-Saint-Georges,47.1383,4.9511
 Peyragudes,42.79,0.445
 Romans-sur-Isère,45.0464,5.0517
-Col d'Izoard,44.81972,6.735
+Col d Izoard,44.81972,6.735
 Salon-de-Provence,43.6406,5.0972
 Utah Beach,49.41806,-1.17639
 Cherbourg-en-Cotentin,49.639,-1.625
@@ -569,12 +567,12 @@ Tignes,45.4683,6.9056
 Plateau-de-Beille,42.725333,1.690875
 Loudenvielle,42.7972,0.4119
 La Toussuire,45.2472222222,6.30305555556
-Noirmoutier-en-l'Île,47.0044,-2.2533
+Noirmoutier-en-l Île,47.0044,-2.2533
 Guéret,46.1714,1.8692
 La Mongie,42.91,0.17917
 Meaux,48.9603,2.8883
 Saint-Dizier,48.6383,4.9497
-Saint-Maixent-l'École,46.4136,-0.2069
+Saint-Maixent-l École,46.4136,-0.2069
 Saarbrücken,49.233,7.0
 Château-Thierry,49.04,3.4
 Bar-le-Duc,48.7719,5.1603
@@ -585,11 +583,11 @@ Maubeuge,50.2775,3.9734
 Thionville,49.3589,6.1692
 Piau-Engaly,42.783895,0.158403
 Corrèze,45.333,1.833
-Le Cap d'Agde,43.28417,3.50056
+Le Cap d Agde,43.28417,3.50056
 Neuchâtel,47.0,6.933
 Les Arcs,45.57167,6.80778
 Lannion,48.7333,-3.4542
-L'Alpe d'Huez,45.06028,6.07139
+L Alpe d Huez,45.06028,6.07139
 Guzet-Neige,42.78722,1.29861
 Armentières,50.6881,2.8811
 Brighton,50.82083,-0.1375
@@ -603,7 +601,7 @@ Koblenz,50.35972,7.59778
 Chassieu,45.745,4.966
 Saint-Herblain,47.2122,-1.6497
 Val-Louron,42.7903,0.3897
-L'Isle-d'Abeau,45.6233,5.2305
+L Isle-d Abeau,45.6233,5.2305
 Machecoul,46.9939,-1.8217
 Ancenis,47.3733,-1.2936
 Épinay-sous-Sénart,48.6948,2.5147
@@ -617,17 +615,17 @@ Noisy-le-Sec,48.8894,2.4503
 La Ruchère,45.4381,5.7747
 Villefranche-sur-Saône,45.9833,4.7167
 Fontaine-au-Pire,50.1306,3.3756
-Île d'Oléron,45.925,-1.2825
+Île d Oléron,45.925,-1.2825
 Möhlin,47.55,7.85
 Mouscron,50.733,3.217
 Aulnay-sous-Bois,48.9386,2.4906
-Pla d'Adet,42.8152,0.2918
+Pla d Adet,42.8152,0.2918
 Circuit Zolder,50.98889,5.25556
 Hasselt,50.93,5.3375
 Le Pleynet,45.2557,5.9931
 Laplume,44.1128,0.5322
 Prapoutel,45.2557,5.9931
-Ballon d'Alsace,47.82222,6.84528
+Ballon d Alsace,47.82222,6.84528
 Saint-Germain-en-Laye,48.8989,2.0938
 Senlis,49.2081,2.5875
 Bornem,51.1,4.233
@@ -648,8 +646,8 @@ Pau,43.2951,-0.3707
 Saint-Girons,42.9833,1.1000
 Embrun,44.5494,6.4944
 Granville,48.8328,-1.5833
-L'Isle-Jourdain,43.6378,1.0403
-Vielha Val d'Aran,42.6986,0.8269
+L Isle-Jourdain,43.6378,1.0403
+Vielha Val d Aran,42.6986,0.8269
 Chantilly,49.1845,2.4750
 Mende,44.5078,3.5056
 Gap,44.5592,6.0787
@@ -711,7 +709,7 @@ Chaumont,48.1111,5.1378
 Forest,50.7636,4.3217
 Ruffec,46.0914,-0.2061
 Charleville,49.7697,4.7142
-Pont l'Evêque,49.2644,0.2375
+Pont l Evêque,49.2644,0.2375
 Blain,47.4247,-1.9475
 Saint-Vincent,45.6422,-1.2167
 Circuit de la Prairie Caen,49.1778,-0.3608
@@ -723,7 +721,7 @@ Saint-Quentin,49.8953,3.2875
 Evian,46.4000,6.5833
 Gex,46.2611,6.0597
 Andorra-Arcalis,42.5492,1.5669
-La Caverne du Pont-d'Arc,44.3814,4.3819
+La Caverne du Pont-d Arc,44.3814,4.3819
 Finhaut-Émosson,46.0456,7.0156
 La Pierre Saint-Martin,43.0708,-0.7911
 La Toussuire - Les Sybelles,45.2325,6.4239
@@ -736,9 +734,9 @@ Annonay-Davézieux,45.2539,4.6500
 Lavaur,43.6692,1.8419
 Col du Galibier-Serre Chevalier,45.0642,6.4050
 Super-Besse Sancy,45.5444,2.8336
-Gourette–Col d'Aubisque,42.9744,-0.3469
-Val d'Aran/Pla-de-Beret,42.6950,0.7697
-Saint-Lary-Soulan Pla d'Adet,42.7892,0.2500
+Gourette–Col d Aubisque,42.9744,-0.3469
+Val d Aran/Pla-de-Beret,42.6950,0.7697
+Saint-Lary-Soulan Pla d Adet,42.7892,0.2500
 Sedan,49.6917,4.9419
 Cap Découverte,43.6678,2.1267
 Cork,51.8983,-8.4750
@@ -754,4 +752,5 @@ Felsberg,49.0925,7.7278
 Belfort/Ballon d’Alsace,47.6778,6.8597
 Circuit des Essarts,49.0139,0.9681
 St. Gaudens,43.1031,0.7225
+Rochefort (Belgique),50.159044,5.22185
 

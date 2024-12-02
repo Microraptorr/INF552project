@@ -1,10 +1,10 @@
 const ctx = {
     w: 1200,
     h: 1400,
-    carte_w: 600,
+    carte_w: 700,
     carte_h: 800,
     timeline_w: 600,
-    timeline_h: 300,
+    timeline_h: 600,
     details_w: 600,
     details_h: 700,
 };
@@ -14,8 +14,7 @@ function createViz() {
     console.log("Using D3 v" + d3.version);
     let mainG = d3.select("#main");
     mainG.append("div").attr("id", "map");
-    mainG.append("div").attr("id", "timelineG")
-                    .attr("transform", `translate(${ctx.carte_w}, 0)`);
+    mainG.append("div").attr("id", "timelineG");
     mainG.append("svg").attr("id", "detailsG")
                     .attr("transform", `translate(${ctx.carte_w}, ${ctx.timeline_h})`);
     loadData();
@@ -24,9 +23,13 @@ function createViz() {
 function loadData() {
     Promise.all([
         d3.csv("TDF_data/stages_general.csv"),
-        d3.csv("TDF_data/cities_with_coordinates.csv")
+        d3.csv("TDF_data/cities_with_coordinates.csv"),
+        d3.csv("TDF_data/overall_rankings.csv"),
+        d3.csv("TDF_data/teams_of_the_finishers.csv"),
+        d3.csv("TDF_data/data_test.csv")
     ]).then(function (data) {
         generateMap(data);
+        overviewGraph(data);
     }).catch(function (error) { console.log(error) });
 };
 
@@ -72,12 +75,11 @@ function generateMap(data){
         if (ctx.city_selected==null){
             ctx.city_selected=getClosestCity(e.latlng);
             console.log(ctx.city_selected.City);
-            drawCities()
         }else{
             ctx.city_selected=null;
             console.log("unselected");
-            drawCities();
         }
+        drawCities();
     });
 }
 
@@ -216,3 +218,136 @@ function drawCities(){
         .attr("cy", (d) => ctx.map.latLngToLayerPoint([d.lat, d.lon]).y)
         
 }
+
+function overviewGraph(data){
+
+    //the following commented code creates a csv file based on selected/completed data from 2 datasets
+    //it has been made so that the webpage loads quicker, as the data is already processed and saved in a csv file
+
+    // //label data
+    // ctx.overall_rankings=data[2].map((d)=>({
+    //     year:parseInt(d.Year),
+    //     name: d.Rider,
+    //     team : d.Team,
+    //     time : parseFloat(d.TotalSeconds),
+    //     gap : parseFloat(d.GapSeconds),
+    //     distance : parseFloat(d["Distance (km)"]),
+    //     resultType : d.ResultType
+    // }));
+
+    // //try to match the nationality of the riders and their teams (more accurate) in another datasource
+    // ctx.teams_and_nationalities=data[3].map((d)=>({
+    //     year : parseInt(d.Year),
+    //     rider : d.Rider.slice(0,-6),
+    //     nationality : d.Rider.slice(-4,-1),
+    //     true_team : d.Team
+    // }));
+
+    // console.log(ctx.teams_and_nationalities);
+
+    // //get nationalities and teams from the previous data in the first dataset
+    // ctx.overall_rankings.forEach((d)=>{
+
+    //     //nationality doesn't depend on the year
+    //     let nation_match=ctx.teams_and_nationalities.find((e)=>(compareStringsInsensitive(e.rider,d.name)));
+    //     d.nationality=null;
+    //     if(nation_match) d.nationality = nation_match.nationality;
+
+    //     //team depends on the year
+    //     let team_match=ctx.teams_and_nationalities.find((e)=>(compareStringsInsensitive(e.rider,d.name)&&e.year==d.year&&e.true_team!=null));
+    //     if (team_match) d.team=team_match.true_team;
+
+    // });
+
+    // console.log(ctx.overall_rankings);
+
+    // const csvData = [
+    //     ["year", "name", "team","time","gap","distance","resultType","nationality"], // Header row
+    //     ...ctx.overall_rankings.map(d => [d.year, d.name, d.team,d.time,d.gap,d.distance,d.resultType,d.nationality]) // Rows from objects
+    // ];
+    // exportToCSV(csvData, "data_test.csv");
+
+
+
+    //comment this line if you want to use the previous code
+    ctx.overall_rankings=data[4];
+
+    //for the graph, filter the data where there's time measurement
+    ctx.overall_rankings_filtered=ctx.overall_rankings.filter((d)=>d.resultType=="time"&&d.time!=0);
+
+    //create the svg
+    let svg=d3.select("#timelineG").append("svg")
+        .attr("id","timeline")
+        .attr("transform", `translate(${ctx.carte_w},100)`)
+        .attr("width",ctx.timeline_w)
+        .attr("height",ctx.timeline_h);
+
+    // Calculate average speed and add it to the data
+    ctx.overall_rankings_filtered.forEach(d => {
+        d.avgSpeed = d.distance / d.time;
+    });
+
+    // Set up scales
+    const xScale = d3.scaleLinear()
+        .domain(d3.extent(ctx.overall_rankings_filtered, d => d.year))
+        .range([50, ctx.timeline_w - 50]);
+
+    const yScale = d3.scaleLinear()
+        .domain(d3.extent(ctx.overall_rankings_filtered, d => 3600*d.avgSpeed))
+        .range([ctx.timeline_h - 50, 50]);
+
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+    // Create axes
+    const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
+    const yAxis = d3.axisLeft(yScale);
+
+    svg.append("g")
+        .attr("transform", `translate(0, ${ctx.timeline_h - 50})`)
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("transform", "translate(50, 0)")
+        .call(yAxis);
+
+    // Create scatter plot
+    console.log(ctx.overall_rankings_filtered);
+
+
+    svg.append("g").attr("id","points").selectAll("circle")
+        .data(ctx.overall_rankings_filtered)
+        .enter()
+        .append("circle")
+        .attr("cx", d => xScale(d.year))
+        .attr("cy", d => yScale(3600*d.avgSpeed))
+        .attr("r", 3)
+        .attr("fill", d => d.nationality ? colorScale(d.nationality) : "black")
+
+
+
+}
+
+function compareStringsInsensitive(str1, str2) {
+    const normalizeAndClean = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    return normalizeAndClean(str1).toLowerCase() === normalizeAndClean(str2).toLowerCase();
+  }
+
+function exportToCSV(array, filename = "data.csv") {
+    // Step 1: Convert the array to CSV format
+    const csvContent = array.map(row => row.join(",")).join("\n");
+  
+    // Step 2: Create a Blob object
+    const blob = new Blob([csvContent], { type: "text/csv" });
+  
+    // Step 3: Create a temporary download link
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+  
+    // Step 4: Trigger the download
+    document.body.appendChild(link); // Append to the DOM (required for Firefox)
+    link.click();
+    document.body.removeChild(link); // Clean up
+}
+
+  
