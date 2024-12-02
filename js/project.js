@@ -15,8 +15,7 @@ function createViz() {
     let mainG = d3.select("#main");
     mainG.append("div").attr("id", "map");
     mainG.append("div").attr("id", "timelineG");
-    mainG.append("svg").attr("id", "detailsG")
-                    .attr("transform", `translate(${ctx.carte_w}, ${ctx.timeline_h})`);
+    mainG.append("svg").attr("id", "detailsG");
     loadData();
 };
 
@@ -278,7 +277,6 @@ function overviewGraph(data){
     //create the svg
     let svg=d3.select("#timelineG").append("svg")
         .attr("id","timeline")
-        .attr("transform", `translate(${ctx.carte_w},100)`)
         .attr("width",ctx.timeline_w)
         .attr("height",ctx.timeline_h);
 
@@ -304,12 +302,19 @@ function overviewGraph(data){
 
     svg.append("g")
         .attr("transform", `translate(0, ${ctx.timeline_h - 50})`)
-        .call(xAxis);
+        .call(xAxis)
+        .selectAll("path, line")
+        .attr("stroke", "white");
 
     svg.append("g")
         .attr("transform", "translate(50, 0)")
-        .call(yAxis);
+        .call(yAxis)
+        .selectAll("path, line")
+        .attr("stroke", "white");
 
+    svg.selectAll(".tick text")
+       .attr("fill", "white");
+    
     // Create scatter plot
     console.log(ctx.overall_rankings_filtered);
 
