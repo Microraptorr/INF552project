@@ -29,6 +29,7 @@ function loadData() {
     ]).then(function (data) {
         generateMap(data);
         overviewGraph(data);
+        checkForUpdates();
     }).catch(function (error) { console.log(error) });
 };
 
@@ -62,24 +63,6 @@ function generateMap(data){
     ctx.city_selected=null;
     drawCities();
 
-
-    //update the map when zooming or moving
-    ctx.map.on('zoom', function () { updatePoints(); });
-    ctx.map.on('moveend', function () {
-        updatePoints();
-    });
-
-    //if map is clicked, selects the closest city. if clicked again, unselects it
-    ctx.map.on('click', function (e) {
-        if (ctx.city_selected==null){
-            ctx.city_selected=getClosestCity(e.latlng);
-            console.log(ctx.city_selected.City);
-        }else{
-            ctx.city_selected=null;
-            console.log("unselected");
-        }
-        drawCities();
-    });
 }
 
 //function to update the points and lines on the map
@@ -268,6 +251,7 @@ function overviewGraph(data){
 
 
 
+
     //comment this line if you want to use the previous code
     ctx.overall_rankings=data[4];
 
@@ -285,28 +269,49 @@ function overviewGraph(data){
         d.avgSpeed = d.distance / d.time;
     });
 
-    // Set up scales
+    updateGraph();
+}
+
+function updateGraph(){
+
+    //filter the data based on the slider values
+    const { lowerVal, upperVal } = getSliderValues();
+    overall_rankings_filtered_by_year=ctx.overall_rankings_filtered.filter(d => d.year >= lowerVal && d.year <= upperVal);
+    
+    let svg = d3.select("#timeline");
+
+    // Remove previous points
+    svg.selectAll("#points").remove();
+    // Remove previous axes
+    svg.selectAll(".x-axis").remove();
+    svg.selectAll(".y-axis").remove();
+
+
+    // (re)Set up scales
     const xScale = d3.scaleLinear()
-        .domain(d3.extent(ctx.overall_rankings_filtered, d => d.year))
+        .domain(d3.extent(overall_rankings_filtered_by_year, d => d.year))
         .range([50, ctx.timeline_w - 50]);
 
     const yScale = d3.scaleLinear()
-        .domain(d3.extent(ctx.overall_rankings_filtered, d => 3600*d.avgSpeed))
+        .domain(d3.extent(overall_rankings_filtered_by_year, d => 3600*d.avgSpeed))
         .range([ctx.timeline_h - 50, 50]);
 
     const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
-    // Create axes
+    // Create new axes
     const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
     const yAxis = d3.axisLeft(yScale);
 
+
     svg.append("g")
+        .attr("class", "x-axis")
         .attr("transform", `translate(0, ${ctx.timeline_h - 50})`)
         .call(xAxis)
         .selectAll("path, line")
         .attr("stroke", "white");
 
     svg.append("g")
+        .attr("class", "y-axis")
         .attr("transform", "translate(50, 0)")
         .call(yAxis)
         .selectAll("path, line")
@@ -316,11 +321,11 @@ function overviewGraph(data){
        .attr("fill", "white");
     
     // Create scatter plot
-    console.log(ctx.overall_rankings_filtered);
+    console.log(overall_rankings_filtered_by_year);
 
 
     svg.append("g").attr("id","points").selectAll("circle")
-        .data(ctx.overall_rankings_filtered)
+        .data(overall_rankings_filtered_by_year)
         .enter()
         .append("circle")
         .attr("cx", d => xScale(d.year))
@@ -414,3 +419,36 @@ document.addEventListener('DOMContentLoaded', () => {
     lowerSlider.on('input', updateSlidersLow);
     upperSlider.on('input', updateSlidersHigh);
 });
+
+function checkForUpdates(){
+    //update the map when zooming or moving
+    ctx.map.on('zoom', function () { updatePoints(); });
+    ctx.map.on('moveend', function () {
+        updatePoints();
+    });
+
+    //if map is clicked, selects the closest city. if clicked again, unselects it
+    ctx.map.on('click', function (e) {
+        if (ctx.city_selected==null){
+            ctx.city_selected=getClosestCity(e.latlng);
+            console.log(ctx.city_selected.City);
+        }else{
+            ctx.city_selected=null;
+            console.log("unselected");
+        }
+        drawCities();
+    });
+
+    //update the graph based on dates given by the slider
+    // Update the graph based on slider values
+    d3.select('#lower').on('input', updateGraph);
+    d3.select('#upper').on('input', updateGraph);
+
+
+}
+
+function getSliderValues() {
+    const lowerVal = +d3.select('#lower').property('value');
+    const upperVal = +d3.select('#upper').property('value');
+    return { lowerVal, upperVal };
+}
