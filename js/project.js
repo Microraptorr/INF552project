@@ -26,7 +26,8 @@ function loadData() {
         d3.csv("TDF_data/cities_with_coordinates.csv"),
         d3.csv("TDF_data/overall_rankings.csv"),
         d3.csv("TDF_data/teams_of_the_finishers.csv"),
-        d3.csv("TDF_data/data_test.csv")
+        d3.csv("TDF_data/data_test.csv"),
+        d3.csv("TDF_data/number_starters_finishers.csv")
     ]).then(function (data) {
         generateMap(data);
         overviewFinishersGraph(data);
@@ -392,7 +393,15 @@ function overviewFinishersGraph(data){
         d.avgSpeed = d.distance / d.time;
     });
 
+    d3.select("#timelineG").append("svg")
+      .attr("id", "distYear")
+      .attr("width", ctx.timeline_w)
+      .attr("height", ctx.timeline_h);
+
+    ctx.startersFinishers = data[5];
+
     updateGraph();
+
 }
 
 function updateGraph(){
@@ -408,6 +417,8 @@ function updateGraph(){
     // Remove previous axes
     svg.selectAll(".x-axis").remove();
     svg.selectAll(".y-axis").remove();
+    svg.selectAll("x-axis-label").remove();
+    svg.selectAll("y-axis-label").remove();
 
 
     // (re)Set up scales
@@ -498,6 +509,147 @@ function updateGraph(){
             ctx.selected_cyclist=null;
         }
     });
+
+
+    // distance/year graph
+    const years = d3.range(lowerVal, upperVal + 1);
+
+    ctx.editions = years.map((year)=>{
+        let line = ctx.overall_rankings.find((d) => d.year == year);
+        let distance = line ? +line.distance : null;
+        return { year, distance };
+    })
+    .filter((d) => d.distance !== null);
+    console.log("editions", ctx.editions);
+
+    ctx.startersFinishers_filtered = ctx.startersFinishers.filter(d => d.Year >= lowerVal && d.Year <= upperVal)
+
+    let svg2 = d3.select("#distYear")
+    // Remove previous points
+    svg2.selectAll(".distance-line").remove();
+    svg2.selectAll(".starters-line").remove();
+    // Remove previous axes
+    svg2.selectAll(".x-axis-edition").remove();
+    svg2.selectAll(".y-axis-dist").remove();
+    svg2.selectAll(".y-axis-starters").remove();
+    svg2.selectAll(".x-axis-label-edition").remove();
+    svg2.selectAll(".y-axis-label-dist").remove();
+    svg2.selectAll(".y-axis-label-starters").remove();
+
+
+
+    // (re)Set up scales
+    const xScaleEdition = d3.scaleLinear()
+        .domain(d3.extent(ctx.editions, d => d.year))
+        .range([50, ctx.timeline_w - 50]);
+
+    const yScaleDist = d3.scaleLinear()
+        .domain(d3.extent(ctx.editions, d => d.distance))
+        .range([ctx.timeline_h - 50, 50]);
+
+    const minPax = d3.min(ctx.startersFinishers_filtered, d => +d.Finishers);
+    const maxPax = d3.max(ctx.startersFinishers_filtered, d => +d.Starters);
+    console.log(minPax, maxPax);
+
+    const yScaleStarters = d3.scaleLinear()
+        .domain([minPax, maxPax])
+        .range([ctx.timeline_h - 50, 50]);
+    
+    // Create new axes
+    const xAxisEdition = d3.axisBottom(xScaleEdition).tickFormat(d3.format("d"));
+    const yAxisDist = d3.axisLeft(yScaleDist);
+    const yAxisStarters = d3.axisRight(yScaleStarters);
+
+
+    svg2.append("g")
+        .attr("class", "x-axis-edition")
+        .attr("transform", `translate(0, ${ctx.timeline_h - 50})`)
+        .call(xAxisEdition)
+        .selectAll("path, line")
+        .attr("stroke", "white");
+
+    svg2.append("text")
+        .attr("class", "x-axis-label-edition")
+        .attr("x", ctx.timeline_w / 2)
+        .attr("y", ctx.timeline_h - 10)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white") 
+        .text("Year");
+
+    svg2.append("g")
+        .attr("class", "y-axis-dist")
+        .attr("transform", "translate(50, 0)")
+        .call(yAxisDist)
+        .selectAll("path, line")
+        .attr("stroke", "white");
+
+    svg2.append("text")
+        .attr("class", "y-axis-label-dist")
+        .attr("x", -ctx.timeline_h / 2)
+        .attr("y", 8) 
+        .attr("transform", "rotate(-90)")
+        .attr("text-anchor", "middle") 
+        .attr("fill", "white") 
+        .text("Distance (km)");
+
+    svg2.append("g")
+        .attr("class", "y-axis-starters")
+        .attr("transform", `translate(${ctx.timeline_w-50}, 0)`)
+        .call(yAxisStarters)
+        .selectAll("path, line")
+        .attr("stroke", "white");
+
+    svg2.append("text")
+        .attr("class", "y-axis-label-starters")
+        .attr("x", -ctx.timeline_h / 2)
+        .attr("y", ctx.timeline_w-10) 
+        .attr("transform", "rotate(-90)")
+        .attr("text-anchor", "middle") 
+        .attr("fill", "white") 
+        .text("Starters");
+
+    svg2.selectAll(".tick text")
+       .attr("fill", "white");
+    
+    // Create the line generator
+    const lineGenerator = d3.line()
+        .x(d => xScaleEdition(d.year))
+        .y(d => yScaleDist(d.distance));
+
+    // Append the line path
+    svg2.append("path")
+        .datum(ctx.editions) // Bind the data
+        .attr("class", "distance-line")
+        .attr("d", lineGenerator) // Generate the line
+        .attr("fill", "none")
+        .attr("stroke", "#FF4500")
+        .attr("stroke-width", 2);
+    
+    // Create the line generator for the starters
+    const lineGeneratorStarters = d3.line()
+        .x(d => xScaleEdition(d.Year))
+        .y(d => yScaleStarters(+d.Starters));
+
+    svg2.append("path")
+        .datum(ctx.startersFinishers_filtered)
+        .attr("class", "starters-line")
+        .attr("d", lineGeneratorStarters)
+        .attr("fill", "none")
+        .attr("stroke", "green")
+        .attr("stroke-width", 2);
+    
+    // Create the line generator for the finishers
+    const lineGeneratorFinishers = d3.line()
+        .x(d => xScaleEdition(d.Year))
+        .y(d => yScaleStarters(+d.Finishers));
+
+    svg2.append("path")
+        .datum(ctx.startersFinishers_filtered)
+        .attr("class", "finishers-line")
+        .attr("d", lineGeneratorFinishers)
+        .attr("fill", "none")
+        .attr("stroke", "yellow")
+        .attr("stroke-width", 2);
 }
 
 function compareStringsInsensitive(str1, str2) {
