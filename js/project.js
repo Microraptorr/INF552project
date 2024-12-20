@@ -528,6 +528,7 @@ function updateGraph(){
     // Remove previous points
     svg2.selectAll(".distance-line").remove();
     svg2.selectAll(".starters-line").remove();
+    svg2.selectAll(".finishers-line").remove();
     // Remove previous axes
     svg2.selectAll(".x-axis-edition").remove();
     svg2.selectAll(".y-axis-dist").remove();
@@ -648,7 +649,7 @@ function updateGraph(){
         .attr("class", "finishers-line")
         .attr("d", lineGeneratorFinishers)
         .attr("fill", "none")
-        .attr("stroke", "yellow")
+        .attr("stroke", "green")
         .attr("stroke-width", 2);
 }
 
