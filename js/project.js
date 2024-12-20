@@ -392,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lowerValSpan.text(parseInt(lowerVal));
         upperValSpan.text(parseInt(upperVal));
+        updateGraph();
     };
 
     function updateSlidersHigh(){
@@ -413,6 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lowerValSpan.text(parseInt(lowerVal));
         upperValSpan.text(parseInt(upperVal));
+        updateGraph();
     };
 
     // Attacher les événements
@@ -439,10 +441,6 @@ function checkForUpdates(){
         drawCities();
     });
 
-    //update the graph based on dates given by the slider
-    // Update the graph based on slider values
-    d3.select('#lower').on('input', updateGraph);
-    d3.select('#upper').on('input', updateGraph);
 
 
 }
