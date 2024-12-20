@@ -5,8 +5,6 @@ const ctx = {
     carte_h: 800,
     timeline_w: 600,
     timeline_h: 600,
-    details_w: 600,
-    details_h: 700,
     selected_cyclist: null,
 };
 
@@ -16,7 +14,6 @@ function createViz() {
     let mainG = d3.select("#main");
     mainG.append("div").attr("id", "map");
     mainG.append("div").attr("id", "timelineG");
-    mainG.append("svg").attr("id", "detailsG");
     loadData();
 };
 
@@ -167,7 +164,6 @@ function drawCities(){
     }else{
         ctx.linked_cities = ctx.linked_cities.filter((d)=>(d.occurrence_nb>=10));
     }
-    console.log(ctx.linked_cities);
 
 
     //remove previous lines and cities
@@ -400,6 +396,11 @@ function overviewFinishersGraph(data){
 
     ctx.startersFinishers = data[5];
 
+    d3.select("#timelineG").append("svg")
+      .attr("id", "propSF")
+      .attr("width", ctx.timeline_w)
+      .attr("height", ctx.timeline_h);
+
     updateGraph();
 
 }
@@ -520,11 +521,10 @@ function updateGraph(){
         return { year, distance };
     })
     .filter((d) => d.distance !== null);
-    console.log("editions", ctx.editions);
 
     ctx.startersFinishers_filtered = ctx.startersFinishers.filter(d => d.Year >= lowerVal && d.Year <= upperVal)
 
-    let svg2 = d3.select("#distYear")
+    let svg2 = d3.select("#distYear");
     // Remove previous points
     svg2.selectAll(".distance-line").remove();
     svg2.selectAll(".starters-line").remove();
@@ -538,8 +538,6 @@ function updateGraph(){
     svg2.selectAll(".y-axis-label-dist").remove();
     svg2.selectAll(".y-axis-label-starters").remove();
 
-
-
     // (re)Set up scales
     const xScaleEdition = d3.scaleLinear()
         .domain(d3.extent(ctx.editions, d => d.year))
@@ -551,7 +549,6 @@ function updateGraph(){
 
     const minPax = d3.min(ctx.startersFinishers_filtered, d => +d.Finishers);
     const maxPax = d3.max(ctx.startersFinishers_filtered, d => +d.Starters);
-    console.log(minPax, maxPax);
 
     const yScaleStarters = d3.scaleLinear()
         .domain([minPax, maxPax])
@@ -561,7 +558,6 @@ function updateGraph(){
     const xAxisEdition = d3.axisBottom(xScaleEdition).tickFormat(d3.format("d"));
     const yAxisDist = d3.axisLeft(yScaleDist);
     const yAxisStarters = d3.axisRight(yScaleStarters);
-
 
     svg2.append("g")
         .attr("class", "x-axis-edition")
@@ -613,8 +609,7 @@ function updateGraph(){
     svg2.selectAll(".tick text")
        .attr("fill", "white");
     
-    
-    
+    // trace the curves
     // Create the line generator for the starters
     const lineGeneratorStarters = d3.line()
         .x(d => xScaleEdition(d.Year))
@@ -673,6 +668,136 @@ function updateGraph(){
         .attr("fill", "none")
         .attr("stroke", "#FF4500")
         .attr("stroke-width", 2);
+    
+    // graph showing the proportions SF
+    ctx.proportions = years.map((year)=>{
+        let line = ctx.startersFinishers.find((d) => d.Year == year);
+        if (line && +line.Starters > 0 && +line.Finishers > 0) {
+            let starter = +line.Starters;
+            let finisher = +line.Finishers;
+            let prop = 1- ((starter - finisher)/(starter + finisher));
+            let top = 1;
+            let bottom = 0;
+            return { year, prop, top, bottom };
+        }
+        return null
+    })
+    .filter((d) => d !== null);
+
+    let svg3 = d3.select("#propSF");
+
+    // Remove previous points
+    svg3.selectAll(".prop-line").remove();
+    svg3.selectAll(".area-top").remove();
+    svg3.selectAll(".area-bottom").remove();
+    // Remove previous axes
+    svg3.selectAll(".x-axis-prop").remove();
+    svg3.selectAll(".y-axis-prop").remove();
+    svg3.selectAll(".x-axis-label-prop").remove();
+    svg3.selectAll(".y-axis-label-prop").remove();
+
+    // (re)Set up scales
+    const xScaleProp = d3.scaleLinear()
+        .domain(d3.extent(ctx.proportions, d => d.year))
+        .range([50, ctx.timeline_w - 50]);
+
+    const yScaleProp = d3.scaleLinear()
+        .domain([0, 1])
+        .range([ctx.timeline_h - 50, 50]);
+    
+    // Create new axes
+    const xAxisProp = d3.axisBottom(xScaleProp).tickFormat(d3.format("d"));
+    const yAxisProp = d3.axisLeft(yScaleProp);
+
+    svg3.append("g")
+        .attr("class", "x-axis-prop")
+        .attr("transform", `translate(0, ${ctx.timeline_h - 50})`)
+        .call(xAxisProp)
+        .selectAll("path, line")
+        .attr("stroke", "white");
+
+    svg3.append("text")
+        .attr("class", "x-axis-label-prop")
+        .attr("x", ctx.timeline_w / 2)
+        .attr("y", ctx.timeline_h - 10)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white") 
+        .text("Year");
+
+    svg3.append("g")
+        .attr("class", "y-axis-prop")
+        .attr("transform", "translate(50, 0)")
+        .call(yAxisProp)
+        .selectAll("path, line")
+        .attr("stroke", "white");
+
+    svg3.append("text")
+        .attr("class", "y-axis-label-prop")
+        .attr("x", -ctx.timeline_h / 2)
+        .attr("y", 8) 
+        .attr("transform", "rotate(-90)")
+        .attr("text-anchor", "middle") 
+        .attr("fill", "white") 
+        .text("Proportion Starters/Finishers");
+
+    svg3.selectAll(".tick text")
+       .attr("fill", "white");
+
+    // Define the area for the top part (above the baseline)
+    const areaAbove = d3.area()
+    .x(d => xScaleProp(d.x))
+    .y0(d => yScaleProp(d.y1)) // Baseline
+    .y1(d => yScaleProp(d.y2)); // Top of the curve (clipped at the baseline)
+    
+    // Combine the data for the area generator
+    const areaDataAbove = ctx.proportions.map((d) => ({
+        x: d.year,
+        y1: d.prop, // Bottom curve value
+        y2: d.top,        // Top curve value
+        }));
+
+    svg3.append("path")
+    .datum(areaDataAbove)
+    .attr("class","area-top")
+    .attr("d", areaAbove)
+    .attr("fill", "lightblue") // Color between the curves
+    .attr("opacity", 0.5);
+
+    // Define the area for the bottom part
+    const areaUnder = d3.area()
+    .x(d => xScaleProp(d.x))
+    .y0(d => yScaleProp(d.y1)) // bottom of the curve
+    .y1(d => yScaleProp(d.y2)); // curve
+    
+    // Combine the data for the area generator
+    const areaDataUnder = ctx.proportions.map((d) => ({
+        x: d.year,
+        y1: d.bottom, // Bottom curve value
+        y2: d.prop,        // Top curve value
+        }));
+
+    svg3.append("path")
+    .datum(areaDataUnder)
+    .attr("class","area-bottom")
+    .attr("d", areaUnder)
+    .attr("fill", "red") // Color between the curves
+    .attr("opacity", 0.5);
+
+    // trace the curves
+    // Create the line generator for the starters
+    const lineGeneratorProp = d3.line()
+        .x(d => xScaleProp(d.year))
+        .y(d => yScaleProp(d.prop));
+
+    svg3.append("path")
+        .datum(ctx.proportions)
+        .attr("class", "prop-line")
+        .attr("d", lineGeneratorProp)
+        .attr("fill", "none")
+        .attr("stroke", "white")
+        .attr("stroke-width", 0.5);
+
+
 }
 
 function compareStringsInsensitive(str1, str2) {
@@ -785,7 +910,6 @@ function checkForUpdates(){
             ctx.city_selected=null;
             d3.select("#selected-city")
             .remove()
-            console.log("unselected");
         }
         drawCities();
     });
