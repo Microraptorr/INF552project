@@ -28,7 +28,8 @@ function loadData() {
         d3.csv("TDF_data/data_test.csv")
     ]).then(function (data) {
         generateMap(data);
-        overviewGraph(data);
+        overviewFinishersGraph(data);
+        console.log("ran")
         checkForUpdates();
     }).catch(function (error) { console.log(error) });
 };
@@ -37,7 +38,6 @@ function loadData() {
 
 function circleClick(e){
     let clickedCircle=e.target
-    console.log(clickedCircle)
     clickedCircle.bindPopup(clickedCircle.options.city).openPopup();
 }
 
@@ -45,7 +45,6 @@ function generateMap(data){
     // label data
     ctx.stages_general = data[0];
     ctx.city_coordinates=data[1];
-    console.log(ctx.city_coordinates);
 
     ctx.map = L.map('map').setView([47.0874657, 2.6485882], 6);
     L.DomUtil.addClass(ctx.map._container, 'crosshair-cursor-enabled');
@@ -68,7 +67,7 @@ function generateMap(data){
 //function to update the points and lines on the map
 function updatePoints() {
     circles = d3.select("#cities").selectAll("circle")
-        .attr("r", (d)=>(25 / Math.sqrt(3*ctx.map.getZoom())*Math.log(d.occurrences+1)))
+        .attr("r", (d)=>(25 / Math.sqrt(3*ctx.map.getZoom())*Math.log(d.occurrence_nb+1)))
         .attr("cx", d => ctx.map.latLngToLayerPoint([d.lat, d.lon]).x)
         .attr("cy", d => ctx.map.latLngToLayerPoint([d.lat, d.lon]).y);
 
@@ -120,11 +119,12 @@ function drawCities(){
 
     //cities' number of occurrences in the race
     ctx.city_coordinates.forEach((d)=>{
-        d.occurrences = ctx.stages_general.filter((stage)=>(stage.Origin==d.City)||stage.Destination==d.City).length;
+        d.occurrences = ctx.stages_general.filter((stage)=>(stage.Origin==d.City)||stage.Destination==d.City).map((stage)=>(+stage.Date.slice(0,4))),
+        d.occurrence_nb=d.occurrences.length;
     })
 
     //create a color scale to color the cities based on the number of visits
-    occurrences_extent = d3.extent(ctx.city_coordinates,(d)=>(d.occurrences));
+    occurrences_extent = d3.extent(ctx.city_coordinates,(d)=>(d.occurrence_nb));
     const colorScale = d3.scaleSequential(d3.interpolatePlasma).domain(occurrences_extent);
 
 
@@ -148,11 +148,23 @@ function drawCities(){
         };
     });
 
-    //filters stages that depart from or arrive to the selected city
-    let uniqueStagesWithCounts_filtered = uniqueStagesWithCounts
+    //filters stages that depart from or arrive to the selected city and selects the linked cities
+    let uniqueStagesWithCounts_filtered = uniqueStagesWithCounts;
+    ctx.linked_cities=ctx.city_coordinates;
+
     if(ctx.city_selected) {
-        uniqueStagesWithCounts_filtered = uniqueStagesWithCounts.filter((d)=>(d.Origin==ctx.city_selected.City||d.Destination==ctx.city_selected.City))
+        uniqueStagesWithCounts_filtered = uniqueStagesWithCounts.filter((d)=>(d.Origin==ctx.city_selected.City||d.Destination==ctx.city_selected.City));
+        ctx.linked_cities = ctx.city_coordinates.filter(city => 
+            uniqueStagesWithCounts_filtered.some(stage => 
+            (stage.Origin === city.City || stage.Destination === city.City) && city.occurrence_nb > 3
+            || city.City === ctx.city_selected.City
+            )
+        );
+    }else{
+        ctx.linked_cities = ctx.linked_cities.filter((d)=>(d.occurrence_nb>=10));
     }
+    console.log(ctx.linked_cities);
+
 
     //remove previous lines and cities
     d3.select("#links").remove();
@@ -193,15 +205,117 @@ function drawCities(){
         .enter()
         .append("circle")
         .attr("id",(d)=>d.City)
-        .attr("r", (d)=>(25 / Math.sqrt(3*ctx.map.getZoom())*Math.log(d.occurrences+1)))
-        .attr("fill", (d) => colorScale(d.occurrences))
+        .attr("r", (d)=>(25 / Math.sqrt(3*ctx.map.getZoom())*Math.log(d.occurrence_nb+1)))
+        .attr("fill", (d) => colorScale(d.occurrence_nb))
         .attr("fill-opacity", 0.8)
         .attr("cx", (d) => ctx.map.latLngToLayerPoint([d.lat, d.lon]).x)
         .attr("cy", (d) => ctx.map.latLngToLayerPoint([d.lat, d.lon]).y)
+
+        overviewCitiesGraph();
         
 }
 
-function overviewGraph(data){
+function overviewCitiesGraph() {
+    const { lowerVal, upperVal } = getSliderValues();
+    const years = d3.range(lowerVal, upperVal + 1);
+  
+    const cellSize = 8;
+    const margin = { top: 50, right: 20, bottom: 50, left: 150 }; // Increased left margin for city labels
+  
+    // Check if the SVG already exists
+    let svg_2 = d3.select("#citiesTimeline");
+  
+    if (svg_2.empty()) {
+      // If it doesn't exist, create it
+      svg_2 = d3.select("#timelineG")
+        .append("svg")
+        .attr("id", "citiesTimeline")
+        .attr("width", years.length * cellSize + margin.left + margin.right)
+        .attr("height", ctx.linked_cities.length * cellSize + margin.top + margin.bottom);
+    }
+  
+    // Clear previous content
+    svg_2.selectAll("*").remove();
+  
+    // Create a color scale for visited vs. not visited
+    const colorScale = d3.scaleOrdinal()
+      .domain([0, 1]) // 0: Not visited, 1: Visited
+      .range(["#333", "#FF4500"]); // Gray for not visited, orange for visited
+  
+    // Draw the grid (heatmap cells)
+    svg_2.append("g")
+      .selectAll("rect")
+      .data(ctx.linked_cities.flatMap((city, y) =>
+        years.map((year, x) => ({
+          city: city.name,
+          year,
+          visited: city.occurrences.includes(year) ? 1 : 0, // Binary indicator
+          x,
+          y
+        }))
+      ))
+      .enter()
+      .append("rect")
+      .attr("x", d => margin.left + d.x * cellSize - 1)
+      .attr("y", d => margin.top + d.y * cellSize - 1)
+      .attr("width", cellSize + 1)
+      .attr("height", cellSize + 1)
+      .attr("fill", d => colorScale(d.visited));
+  
+    // Create x-axis for the years (only every fifth year)
+    const xScale = d3.scaleBand()
+      .domain(years.filter(year => year % 5 === 0)) // Only include years divisible by 5
+      .range([0, years.length * cellSize]);
+  
+    svg_2.append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top + ctx.linked_cities.length * cellSize})`) // Position the x-axis at the bottom
+      .call(d3.axisBottom(xScale).tickFormat(d => d)) // Add the x-axis using the scale
+      .selectAll("text")
+      .style("font-size", "10px")
+      .attr("transform", "rotate(-45)") // Rotate labels for better readability
+      .style("fill", "white") // Set text color to white
+      .style("text-anchor", "end");
+  
+    // Sort cities by descending latitude (.lat)
+    const sortedCities = ctx.linked_cities.sort((a, b) => b.lat - a.lat); // Sort by descending lat
+  
+    // Create y-axis for the cities
+    const yScale = d3.scaleBand()
+      .domain(sortedCities.map(city => city.City)) // Set the city names on the y-axis
+      .range([0, sortedCities.length * cellSize]);
+  
+    svg_2.append("g")
+      .attr("transform", `translate(${margin.left - 10}, ${margin.top})`) // Position the y-axis on the left side
+      .call(d3.axisLeft(yScale)) // Add the y-axis using the scale
+      .selectAll("text")
+      .style("font-size", "10px")
+      .style("fill", "white") // Set text color to white
+      .style("text-anchor", "end"); // Align the text to the end (right side of the axis)
+  
+    svg_2.selectAll(".tick line, .domain")
+      .attr("stroke", "white"); // Set the axis line color to white
+  
+    // Optional: Draw gridlines for better readability
+    svg_2.append("g")
+      .selectAll(".x-gridline")
+      .data(years.filter(year => year % 5 === 0)) // Only show gridlines for years divisible by 5
+      .enter()
+      .append("line")
+      .attr("x1", d => margin.left + xScale(d))
+      .attr("y1", margin.top)
+      .attr("x2", d => margin.left + xScale(d))
+      .attr("y2", margin.top + sortedCities.length * cellSize)
+      .attr("stroke", "#ccc")
+      .attr("stroke-width", 0.5)
+      .attr("stroke-dasharray", "4");
+  }
+  
+  
+  
+  
+  
+
+function overviewFinishersGraph(data){
 
     //the following commented code creates a csv file based on selected/completed data from 2 datasets
     //it has been made so that the webpage loads quicker, as the data is already processed and saved in a csv file
@@ -321,8 +435,6 @@ function updateGraph(){
        .attr("fill", "white");
     
     // Create scatter plot
-    console.log(overall_rankings_filtered_by_year);
-
 
     svg.append("g").attr("id","points").selectAll("circle")
         .data(overall_rankings_filtered_by_year)
@@ -393,6 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lowerValSpan.text(parseInt(lowerVal));
         upperValSpan.text(parseInt(upperVal));
         updateGraph();
+        overviewCitiesGraph();
     };
 
     function updateSlidersHigh(){
@@ -415,6 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lowerValSpan.text(parseInt(lowerVal));
         upperValSpan.text(parseInt(upperVal));
         updateGraph();
+        overviewCitiesGraph();
     };
 
     // Attacher les événements
