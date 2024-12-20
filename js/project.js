@@ -529,6 +529,7 @@ function updateGraph(){
     svg2.selectAll(".distance-line").remove();
     svg2.selectAll(".starters-line").remove();
     svg2.selectAll(".finishers-line").remove();
+    svg2.selectAll(".areaSF").remove();
     // Remove previous axes
     svg2.selectAll(".x-axis-edition").remove();
     svg2.selectAll(".y-axis-dist").remove();
@@ -590,7 +591,7 @@ function updateGraph(){
         .attr("y", 8) 
         .attr("transform", "rotate(-90)")
         .attr("text-anchor", "middle") 
-        .attr("fill", "white") 
+        .attr("fill", "#FF4500") 
         .text("Distance (km)");
 
     svg2.append("g")
@@ -606,25 +607,13 @@ function updateGraph(){
         .attr("y", ctx.timeline_w-10) 
         .attr("transform", "rotate(-90)")
         .attr("text-anchor", "middle") 
-        .attr("fill", "white") 
-        .text("Starters");
+        .attr("fill", "green") 
+        .text("Starters (top) - Finishers (bottom)");
 
     svg2.selectAll(".tick text")
        .attr("fill", "white");
     
-    // Create the line generator
-    const lineGenerator = d3.line()
-        .x(d => xScaleEdition(d.year))
-        .y(d => yScaleDist(d.distance));
-
-    // Append the line path
-    svg2.append("path")
-        .datum(ctx.editions) // Bind the data
-        .attr("class", "distance-line")
-        .attr("d", lineGenerator) // Generate the line
-        .attr("fill", "none")
-        .attr("stroke", "#FF4500")
-        .attr("stroke-width", 2);
+    
     
     // Create the line generator for the starters
     const lineGeneratorStarters = d3.line()
@@ -650,6 +639,39 @@ function updateGraph(){
         .attr("d", lineGeneratorFinishers)
         .attr("fill", "none")
         .attr("stroke", "green")
+        .attr("stroke-width", 2);
+
+    const area = d3.area()
+        .x(d => xScaleEdition(d.x))
+        .y0(d => yScaleStarters(d.y1)) // Bottom curve (data2)
+        .y1(d => yScaleStarters(d.y2)); // Top curve (data1)
+    
+    // Combine the data for the area generator
+    const areaData = ctx.startersFinishers_filtered.map((d) => ({
+        x: d.Year,
+        y1: d.Finishers, // Bottom curve value
+        y2: d.Starters,        // Top curve value
+        }));
+
+    svg2.append("path")
+    .datum(areaData)
+    .attr("class","areaSF")
+    .attr("d", area)
+    .attr("fill", "lightgreen") // Color between the curves
+    .attr("opacity", 0.5);
+
+    // Create the line generator
+    const lineGenerator = d3.line()
+        .x(d => xScaleEdition(d.year))
+        .y(d => yScaleDist(d.distance));
+
+    // Append the line path
+    svg2.append("path")
+        .datum(ctx.editions) // Bind the data
+        .attr("class", "distance-line")
+        .attr("d", lineGenerator) // Generate the line
+        .attr("fill", "none")
+        .attr("stroke", "#FF4500")
         .attr("stroke-width", 2);
 }
 
