@@ -7,6 +7,7 @@ const ctx = {
     timeline_h: 600,
     details_w: 600,
     details_h: 700,
+    selected_cyclist: null,
 };
 
 
@@ -29,7 +30,6 @@ function loadData() {
     ]).then(function (data) {
         generateMap(data);
         overviewFinishersGraph(data);
-        console.log("ran")
         checkForUpdates();
     }).catch(function (error) { console.log(error) });
 };
@@ -60,6 +60,9 @@ function generateMap(data){
 
     //draw cities
     ctx.city_selected=null;
+
+   
+
     drawCities();
 
 }
@@ -156,7 +159,7 @@ function drawCities(){
         uniqueStagesWithCounts_filtered = uniqueStagesWithCounts.filter((d)=>(d.Origin==ctx.city_selected.City||d.Destination==ctx.city_selected.City));
         ctx.linked_cities = ctx.city_coordinates.filter(city => 
             uniqueStagesWithCounts_filtered.some(stage => 
-            (stage.Origin === city.City || stage.Destination === city.City) && city.occurrence_nb > 3
+            (stage.Origin === city.City || stage.Destination === city.City)
             || city.City === ctx.city_selected.City
             )
         );
@@ -219,19 +222,23 @@ function overviewCitiesGraph() {
     const { lowerVal, upperVal } = getSliderValues();
     const years = d3.range(lowerVal, upperVal + 1);
   
-    const cellSize = 8;
+    const cellSize_h = 8;
+    const cellSize_w = ctx.carte_w/(upperVal-lowerVal+1);
+
     const margin = { top: 50, right: 20, bottom: 50, left: 150 }; // Increased left margin for city labels
   
     // Check if the SVG already exists
-    let svg_2 = d3.select("#citiesTimeline");
+    let svg_2 = d3.select("#citiesTimeline")
+    .attr("width",ctx.map_w)
+    .attr("height",ctx.map_h);
   
     if (svg_2.empty()) {
       // If it doesn't exist, create it
       svg_2 = d3.select("#timelineG")
         .append("svg")
         .attr("id", "citiesTimeline")
-        .attr("width", years.length * cellSize + margin.left + margin.right)
-        .attr("height", ctx.linked_cities.length * cellSize + margin.top + margin.bottom);
+        .attr("width", years.length * cellSize_w + margin.left + margin.right)
+        .attr("height", ctx.linked_cities.length * cellSize_h + margin.top + margin.bottom);
     }
   
     // Clear previous content
@@ -241,11 +248,15 @@ function overviewCitiesGraph() {
     const colorScale = d3.scaleOrdinal()
       .domain([0, 1]) // 0: Not visited, 1: Visited
       .range(["#333", "#FF4500"]); // Gray for not visited, orange for visited
+
+      
+    // Sort cities by descending latitude (.lat)
+    const sortedCities = ctx.linked_cities.sort((a, b) => b.lat - a.lat); // Sort by descending lat
   
     // Draw the grid (heatmap cells)
     svg_2.append("g")
       .selectAll("rect")
-      .data(ctx.linked_cities.flatMap((city, y) =>
+      .data(sortedCities.flatMap((city, y) =>
         years.map((year, x) => ({
           city: city.name,
           year,
@@ -256,33 +267,31 @@ function overviewCitiesGraph() {
       ))
       .enter()
       .append("rect")
-      .attr("x", d => margin.left + d.x * cellSize - 1)
-      .attr("y", d => margin.top + d.y * cellSize - 1)
-      .attr("width", cellSize + 1)
-      .attr("height", cellSize + 1)
+      .attr("x", d => margin.left + d.x * cellSize_w - 1)
+      .attr("y", d => margin.top + d.y * cellSize_h - 1)
+      .attr("width", cellSize_w + 1)
+      .attr("height", cellSize_h + 1)
       .attr("fill", d => colorScale(d.visited));
   
     // Create x-axis for the years (only every fifth year)
     const xScale = d3.scaleBand()
       .domain(years.filter(year => year % 5 === 0)) // Only include years divisible by 5
-      .range([0, years.length * cellSize]);
+      .range([0, years.length * cellSize_w]);
   
     svg_2.append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top + ctx.linked_cities.length * cellSize})`) // Position the x-axis at the bottom
+      .attr("transform", `translate(${margin.left}, ${margin.top + ctx.linked_cities.length * cellSize_h})`) // Position the x-axis at the bottom
       .call(d3.axisBottom(xScale).tickFormat(d => d)) // Add the x-axis using the scale
       .selectAll("text")
       .style("font-size", "10px")
       .attr("transform", "rotate(-45)") // Rotate labels for better readability
       .style("fill", "white") // Set text color to white
       .style("text-anchor", "end");
-  
-    // Sort cities by descending latitude (.lat)
-    const sortedCities = ctx.linked_cities.sort((a, b) => b.lat - a.lat); // Sort by descending lat
+
   
     // Create y-axis for the cities
     const yScale = d3.scaleBand()
       .domain(sortedCities.map(city => city.City)) // Set the city names on the y-axis
-      .range([0, sortedCities.length * cellSize]);
+      .range([0, sortedCities.length * cellSize_h]);
   
     svg_2.append("g")
       .attr("transform", `translate(${margin.left - 10}, ${margin.top})`) // Position the y-axis on the left side
@@ -304,7 +313,7 @@ function overviewCitiesGraph() {
       .attr("x1", d => margin.left + xScale(d))
       .attr("y1", margin.top)
       .attr("x2", d => margin.left + xScale(d))
-      .attr("y2", margin.top + sortedCities.length * cellSize)
+      .attr("y2", margin.top + sortedCities.length * cellSize_h)
       .attr("stroke", "#ccc")
       .attr("stroke-width", 0.5)
       .attr("stroke-dasharray", "4");
@@ -451,7 +460,7 @@ function updateGraph(){
         .attr("transform", "rotate(-90)")
         .attr("text-anchor", "middle") 
         .attr("fill", "white") 
-        .text("Average speed (m/s)");
+        .text("Average speed (km/h)");
 
     svg.selectAll(".tick text")
        .attr("fill", "white");
@@ -470,7 +479,24 @@ function updateGraph(){
 
     // Add event listener for circle click
     svg.selectAll("circle").on("click", function(event, d) {
-        console.log(d.name);
+        if (ctx.selected_cyclist==null){
+            d3.select("#main")
+                .append("div")
+                .attr("id", "selected-cyclist")
+                .style("width", "800px")
+                .style("position", "absolute")
+                .style("top", "750px")    // Set the top position to 800px
+                .style("left", "950px")   // Set the left position to 350px
+                .style("padding", "5px")
+                .style("font-size", "2em")  // Make the text twice bigger
+                .style("color", "white")  // Set the text color to white
+                .text("Cyclist : " + d.name);
+            ctx.selected_cyclist = d;
+        }else{
+            d3.select("#selected-cyclist")
+                .remove()
+            ctx.selected_cyclist=null;
+        }
     });
 }
 
@@ -569,9 +595,21 @@ function checkForUpdates(){
     ctx.map.on('click', function (e) {
         if (ctx.city_selected==null){
             ctx.city_selected=getClosestCity(e.latlng);
-            console.log(ctx.city_selected.City);
+            d3.select("#main")
+            .append("div")
+            .attr("id", "selected-city")
+            .style("position", "absolute")
+            .style("top", "750px")    // Set the top position to 800px
+            .style("left", "300px")   // Set the left position to 350px
+            .style("padding", "5px")
+            .style("color", "white")  // Set the text color to white
+            .style("font-size", "2em")  // Make the text twice bigger
+            .text("City selected : "+ctx.city_selected.City);
+
         }else{
             ctx.city_selected=null;
+            d3.select("#selected-city")
+            .remove()
             console.log("unselected");
         }
         drawCities();

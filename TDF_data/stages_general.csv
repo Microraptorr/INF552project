@@ -211,7 +211,7 @@ P,2010-07-03,8.9,Rotterdam,Rotterdam,Individual time trial,Fabian Cancellara,SUI
 21,2008-07-27,143,Étampes,Paris,Flat stage,Gert Steegmans,BEL
 P,2007-07-07,7.9,London,London,Individual time trial,Fabian Cancellara,SUI
 1,2007-07-08,203,London,Canterbury,Plain stage,Robbie McEwen,AUS
-2,2007-07-09,168.5,Dunkirk,Ghent,Plain stage,Gert Steegmans,BEL
+2,2007-07-09,168.5,Dunkerque,Ghent,Plain stage,Gert Steegmans,BEL
 3,2007-07-10,236.5,Waregem - Compiègne,Waregem - Compiègne,Plain stage,Fabian Cancellara,SUI
 4,2007-07-11,193,Villers-Cotterêts,Joigny,Plain stage,Thor Hushovd,NOR
 5,2007-07-12,182.5,Chablis,Autun,Intermediate stage,Filippo Pozzato,ITA
@@ -335,7 +335,7 @@ P,2002-07-06,7,Luxembourg City,Luxembourg City,Individual time trial,Lance Armst
 18,2002-07-26,176.5,Cluses,Bourg-en-Bresse,Hilly stage,Thor Hushovd,NOR
 19,2002-07-27,50,Régnié-Durette,Mâcon,Individual time trial,Lance Armstrong[n 1],USA
 20,2002-07-28,144,Melun,Paris,Plain stage,Robbie McEwen,AUS
-P,2001-07-07,8.2,Dunkirk,Dunkirk,Individual time trial,Christophe Moreau,FRA
+P,2001-07-07,8.2,Dunkerque,Dunkerque,Individual time trial,Christophe Moreau,FRA
 1,2001-07-08,194.5,Saint-Omer,Boulogne-sur-Mer,Plain stage,Erik Zabel,GER
 2,2001-07-09,220.5,Calais,Antwerp,Plain stage,Marc Wauters,BEL
 3,2001-07-10,198.5,Antwerp,Seraing,Plain stage,Erik Zabel,GER
@@ -469,8 +469,8 @@ P,1995-07-01,7.3,Saint-Brieuc,Saint-Brieuc,Individual time trial,Jacky Durand,FR
 2,1995-07-03,235.5,Perros-Guirec,Vitre,Plain stage,Mario Cipollini,ITA
 3,1995-07-04,67,Mayenne,Alençon,Team time trial,Gewiss–Ballan,
 4,1995-07-05,162,Alençon,Le Havre,Plain stage,Mario Cipollini,ITA
-5,1995-07-06,261,Fécamp,Dunkirk,Plain stage,Jeroen Blijlevens,NED
-6,1995-07-07,202,Dunkirk,Charleroi,Plain stage,Erik Zabel,GER
+5,1995-07-06,261,Fécamp,Dunkerque,Plain stage,Jeroen Blijlevens,NED
+6,1995-07-07,202,Dunkerque,Charleroi,Plain stage,Erik Zabel,GER
 7,1995-07-08,203,Charleroi,Liège,Hilly stage,Johan Bruyneel,BEL
 8,1995-07-09,54,Huy,Seraing,Individual time trial,Miguel Indurain,ESP
 9,1995-07-11,160,Le Grand-Bornand,La Plagne,Stage with mountain(s),Alex Zülle,SUI
@@ -1177,8 +1177,8 @@ P,1969-06-28,10,Roubaix,Roubaix,Individual time trial,Rudi Altig,GER
 1,1966-06-21,209,Nancy,Charleville,Plain stage,Rudi Altig,FRG
 2,1966-06-22,198,Charleville,Tournai,Plain stage,Guido Reybrouck,BEL
 3a,1966-06-23,21,Tournai,Tournai,Team time trial,Televizier–Batavus,
-3b,1966-06-23,131,Tournai,Dunkirk,Plain stage,Gerben Karstens,NED
-4,1966-06-24,205,Dunkirk,Dieppe,Plain stage,Willy Planckaert,BEL
+3b,1966-06-23,131,Tournai,Dunkerque,Plain stage,Gerben Karstens,NED
+4,1966-06-24,205,Dunkerque,Dieppe,Plain stage,Willy Planckaert,BEL
 5,1966-06-25,178,Dieppe,Caen,Plain stage,Franco Bitossi,ITA
 6,1966-06-26,217,Caen,Angers,Plain stage,Edward Sels,BEL
 7,1966-06-27,252,Angers,Royan,Plain stage,Albert Van Vlierberghe,BEL
@@ -1319,8 +1319,8 @@ P,1969-06-28,10,Roubaix,Roubaix,Individual time trial,Rudi Altig,GER
 21,1961-07-16,252.5,Tours,Paris,Plain stage,Robert Cazala,FRA
 1a,1960-06-26,108,Lille,Brussels,Plain stage,Julien Schepens,BEL
 1b,1960-06-26,27.8,Brussels,Brussels,Individual time trial,Roger Rivière,FRA
-2,1960-06-27,206,Brussels,Dunkirk,Plain stage,René Privat,FRA
-3,1960-06-28,209,Dunkirk,Dieppe,Plain stage,Nino Defilippis,ITA
+2,1960-06-27,206,Brussels,Dunkerque,Plain stage,René Privat,FRA
+3,1960-06-28,209,Dunkerque,Dieppe,Plain stage,Nino Defilippis,ITA
 4,1960-06-29,211,Dieppe,Caen,Plain stage,Jean Graczyk,FRA
 5,1960-06-30,189,Caen,Saint-Malo,Plain stage,André Darrigade,FRA
 6,1960-07-01,191,Saint-Malo,Lorient,Plain stage,Roger Rivière,FRA
@@ -1362,8 +1362,8 @@ P,1969-06-28,10,Roubaix,Roubaix,Individual time trial,Rudi Altig,GER
 21,1959-07-17,69,Seurre,Dijon,Individual time trial,Roger Rivière,FRA
 22,1959-07-18,331,Dijon,Paris,Plain stage,Joseph Groussard,FRA
 1,1958-06-26,184,Brussels,Ghent,Plain stage,André Darrigade,FRA
-2,1958-06-27,198,Ghent,Dunkirk,Plain stage,Gerrit Voorting,NED
-3,1958-06-28,177,Dunkirk,Mers-les-Bains,Plain stage,Gilbert Bauvin,FRA
+2,1958-06-27,198,Ghent,Dunkerque,Plain stage,Gerrit Voorting,NED
+3,1958-06-28,177,Dunkerque,Mers-les-Bains,Plain stage,Gilbert Bauvin,FRA
 4,1958-06-29,205,Le Tréport,Versailles,Plain stage,Jean Gainche,FRA
 5,1958-06-30,232,Versailles,Caen,Plain stage,Tino Sabbadini,FRA
 6,1958-07-01,223,Caen,Saint-Brieuc,Plain stage,Martin van Geneugden,BEL
@@ -1957,8 +1957,8 @@ P,1969-06-28,10,Roubaix,Roubaix,Individual time trial,Rudi Altig,GER
 22,1927-07-15,159,Metz,Charleville,Team time trial,Hector Martin,BEL
 23,1927-07-16,270,Charleville,Dunkerque,Team time trial,André Leducq,FRA
 24,1927-07-17,344,Dunkerque,Paris,Plain stage,André Leducq,FRA
-1,1926-06-20,373,Evian,Mülhausen,Plain stage,Jules Buysse,BEL
-2,1926-06-22,334,Mülhausen,Metz,Plain stage,Aimé Dossche,BEL
+1,1926-06-20,373,Evian,Mulhouse,Plain stage,Jules Buysse,BEL
+2,1926-06-22,334,Mulhouse,Metz,Plain stage,Aimé Dossche,BEL
 3,1926-06-24,433,Metz,Dunkerque,Plain stage,Gustaaf van Slembrouck,BEL
 4,1926-06-26,361,Dunkerque,Le Havre,Plain stage,Félix Sellier,BEL
 5,1926-06-28,357,Le Havre,Cherbourg,Plain stage,Adelin Benoit,BEL
