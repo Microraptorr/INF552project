@@ -410,8 +410,13 @@ function updateGraph(){
         .domain(d3.extent(overall_rankings_filtered_by_year, d => 3600*d.avgSpeed))
         .range([ctx.timeline_h - 50, 50]);
 
-    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
-
+    // Creating a fixed colorScale for the main participating countries
+    const countryColors = ["#0055A4", "#FFD700", "#009246", "#000000", "#F2003C", "#D52B1E", "#C60B1E", "#00843D", "#FF781F", "#00247D", "#C60C30", "#3C3B6E", "#FCD116"];
+    const colorScale = d3.scaleOrdinal()
+                         .domain(["FRA", "BEL", "ITA", "GER", "LUX", "SUI", "ESP", "AUS", "NED", "GBR", "DEN", "USA", "COL"])
+                         .range(countryColors)
+                         .unknown("#666666");
+    
     // Create new axes
     const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
     const yAxis = d3.axisLeft(yScale);
@@ -424,12 +429,29 @@ function updateGraph(){
         .selectAll("path, line")
         .attr("stroke", "white");
 
+    svg.append("text")
+        .attr("class", "x-axis-label")
+        .attr("x", ctx.timeline_w / 2)
+        .attr("y", ctx.timeline_h - 10)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white") 
+        .text("Year");
+
     svg.append("g")
         .attr("class", "y-axis")
         .attr("transform", "translate(50, 0)")
         .call(yAxis)
         .selectAll("path, line")
         .attr("stroke", "white");
+
+    svg.append("text")
+        .attr("class", "y-axis-label")
+        .attr("x", -ctx.timeline_h / 2)
+        .attr("y", 15) 
+        .attr("transform", "rotate(-90)")
+        .attr("text-anchor", "middle") 
+        .attr("fill", "white") 
+        .text("Average speed (m/s)");
 
     svg.selectAll(".tick text")
        .attr("fill", "white");
